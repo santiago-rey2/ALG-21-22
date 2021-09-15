@@ -5,7 +5,7 @@ int sumaSubMax1 (int v[],int n){
 
     for (i = 0; i < n; i++){
         estasuma = 0;
-        for(j = i;j < n-1; j++){
+        for(j = i;j < n; j++){
             estasuma += v[j];
 
             if(estasuma > sumamax){
@@ -37,10 +37,10 @@ int sumaSubMax2 ( int v[],int n){
 
 void listarvector(int v[],int n){
     int i;
-    for (i = 0;i < n;i++){
+    for (i = 0;i <= n;i++){
         if(i == 0){
             printf("[ %d, ",v[i]);
-        }else if(i < n-1){
+        }else if(i < n){
             printf("%d, ",v[i]);
         }else{
             printf("%d] ",v[i]);
@@ -65,10 +65,10 @@ void inicializarvector(int v[],int n,int i){
 }
 
 void test1(){
-    int v[5],i;
+    int v[4],i;
     for(i=0; i < 6;i++){
-        inicializarvector(v,5,i);
-        listarvector(v,5);
+        inicializarvector(v,4,i);
+        listarvector(v,4);
         printf("  subM1 %d   subM2 %d  \n",sumaSubMax1(v,5),sumaSubMax2(v,5));
     }
 
