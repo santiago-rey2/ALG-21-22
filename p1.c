@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
 
 int sumaSubMax1 (int v[],int n){
     int sumamax = 0,estasuma,j,i;
@@ -37,10 +40,10 @@ int sumaSubMax2 ( int v[],int n){
 
 void listarvector(int v[],int n){
     int i;
-    for (i = 0;i <= n;i++){
+    for (i = 0;i < n;i++){
         if(i == 0){
             printf("[ %2d, ",v[i]);
-        }else if(i < n){
+        }else if(i < n-1){
             printf("%2d, ",v[i]);
         }else{
             printf("%2d] ",v[i]);
@@ -81,22 +84,22 @@ void test1(){
     for(i=0; i < 6;i++){
         inicializarvector(v,4,i);
         listarvector(v,4);
-        printf("  subM1 %d   subM2 %d  \n",sumaSubMax1(v,5),sumaSubMax2(v,5));
+        printf("  subM1 %d   subM2 %d  \n",sumaSubMax1(v,4),sumaSubMax2(v,4));
     }
 
 }
 
 void test2(){
-    int v[8],i,k;
+    int n=9,v[n],i,k;
     k = 10;
 
-    printf("                    subM1  subM2 \n");
+    printf("                                      subM1  subM2 \n");
 
     for(i=0; i < k ; i++){
 
-        aleatorio(v,8);
-        listarvector(v,8);
-        printf("                      %3d    %3d \n");
+        aleatorio(v,n);
+        listarvector(v,n);
+        printf("%3d    %3d \n",sumaSubMax1(v,n),sumaSubMax2(v,n));
 
     }
     
@@ -104,6 +107,6 @@ void test2(){
 
 int main(){
     inicializar_semilla();
-    test1();
+    //test1();
     test2();
 }
