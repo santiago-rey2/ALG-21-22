@@ -39,11 +39,11 @@ void listarvector(int v[],int n){
     int i;
     for (i = 0;i <= n;i++){
         if(i == 0){
-            printf("[ %d, ",v[i]);
+            printf("[ %2d, ",v[i]);
         }else if(i < n){
-            printf("%d, ",v[i]);
+            printf("%2d, ",v[i]);
         }else{
-            printf("%d] ",v[i]);
+            printf("%2d] ",v[i]);
         }
     }
 }
@@ -64,6 +64,18 @@ void inicializarvector(int v[],int n,int i){
     }
 }
 
+void inicializar_semilla() {
+srand(time(NULL));
+/* se establece la semilla de una nueva serie de enteros pseudo-aleatorios */
+}
+
+void aleatorio(int v [], int n) {
+int i, m=2*n+1;
+for (i=0; i < n; i++)
+v[i] = (rand() % m) - n;
+/* se generan números pseudoaleatorio entre -n y +n */
+}
+
 void test1(){
     int v[4],i;
     for(i=0; i < 6;i++){
@@ -74,6 +86,24 @@ void test1(){
 
 }
 
+void test2(){
+    int v[8],i,k;
+    k = 10;
+
+    printf("                    subM1  subM2 \n");
+
+    for(i=0; i < k ; i++){
+
+        aleatorio(v,8);
+        listarvector(v,8);
+        printf("                      %3d    %3d \n");
+
+    }
+    
+}
+
 int main(){
+    inicializar_semilla();
     test1();
+    test2();
 }
