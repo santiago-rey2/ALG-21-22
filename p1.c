@@ -80,11 +80,13 @@ v[i] = (rand() % m) - n;
 }
 
 void test1(){
-    int v[4],i;
+    int n = 5;
+    int v[n],i;
+    printf("                      subM1   subM2 \n");
     for(i=0; i < 6;i++){
-        inicializarvector(v,4,i);
-        listarvector(v,4);
-        printf("  subM1 %d   subM2 %d  \n",sumaSubMax1(v,4),sumaSubMax2(v,4));
+        inicializarvector(v,n,i);
+        listarvector(v,n);
+        printf(" %3d   %3d  \n",sumaSubMax1(v,n),sumaSubMax2(v,n));
     }
 
 }
@@ -107,6 +109,8 @@ void test2(){
 
 int main(){
     inicializar_semilla();
-    //test1();
+    printf("Test 1\n\n");
+    test1();
+    printf("\nTest 2\n\n");
     test2();
 }
