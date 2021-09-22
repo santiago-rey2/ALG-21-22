@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sys/time.h>
 
 
 int sumaSubMax1 (int v[],int n){
@@ -107,10 +108,51 @@ void test2(){
     
 }
 
+double microsegundos() { /* obtiene la hora del sistema en microsegundos */
+    struct timeval t;
+    if (gettimeofday(&t, NULL) < 0 )
+        return 0.0;
+    return (t.tv_usec + t.tv_sec * 1000000.0);
+}
+
+
+void TimeSubMax1(){
+    int n = 500,v[32000],i,k = 100;
+    double ta,tb,t;
+
+    while (n < 32000)
+    {
+        aleatorio(v,n);
+        
+        ta = microsegundos();
+        sumaSubMax1(v,n);
+        tb = microsegundos();
+        if( (ta-tb)< 500 ){
+            ta = microsegundos();
+            for ( i = 0; i < k; i++)
+            {
+                sumaSubMax1(v,n);
+            }
+            tb = microsegundos();
+        }
+
+        t = ta-tb;
+        printf("%f \n",t);
+
+        n = n *2;
+    }
+    
+}
+
+
+
+
 int main(){
     inicializar_semilla();
     printf("Test 1\n\n");
     test1();
     printf("\nTest 2\n\n");
     test2();
+    printf("Tiempos sumasubmax1 \n");
+    TimeSubMax1();
 }
