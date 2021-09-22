@@ -146,6 +146,35 @@ void TimeSubMax1(){
     
 }
 
+void TimeSubMax2(){
+    int n = 500,v[32000],i,k = 10000;
+    double ta,tb,t,c1,c2,c3;
+
+    while (n <= 32000)
+    {
+        aleatorio(v,n);
+        c1 = pow(n,0.9),c2 = pow(n,1);c3 = pow(n,1.2); 
+        ta = microsegundos();
+        sumaSubMax2(v,n);
+        tb = microsegundos();
+        t = tb-ta;
+        if( (t)< 500 ){
+            ta = microsegundos();
+            for ( i = 0; i < k; i++)
+            {
+                sumaSubMax2(v,n);
+            }
+            tb = microsegundos();
+            t = (tb-ta) / k;
+        }
+
+        printf("%5d  %15f  %8f  %8f  %8f\n",n,t,t/c1,t/c2,t/c3);
+
+        n = n *2;
+    }
+    
+}
+
 
 
 
@@ -157,4 +186,6 @@ int main(){
     test2();
     printf("Tiempos sumasubmax1 \n");
     TimeSubMax1();
+    printf("Tiempos sumasubmax2 \n");
+    TimeSubMax2();
 }
