@@ -137,9 +137,10 @@ void TimeSubMax1(){
             }
             tb = microsegundos();
             t = (tb-ta) / k;
+             printf("* %5d  %15f  %8f  %8f  %8f\n",n,t,t/c1,t/c2,t/c3);
+        }else{
+            printf("%5d  %15f  %8f  %8f  %8f\n",n,t,t/c1,t/c2,t/c3);
         }
-
-        printf("%5d  %15f  %8f  %8f  %8f\n",n,t,t/c1,t/c2,t/c3);
 
         n = n *2;
     }
@@ -158,7 +159,7 @@ void TimeSubMax2(){
         sumaSubMax2(v,n);
         tb = microsegundos();
         t = tb-ta;
-        if( (t)< 500 ){
+        if( t< 500 ){
             ta = microsegundos();
             for ( i = 0; i < k; i++)
             {
@@ -166,9 +167,10 @@ void TimeSubMax2(){
             }
             tb = microsegundos();
             t = (tb-ta) / k;
+            printf("* %5d  %15f  %8f  %8f  %8f\n",n,t,t/c1,t/c2,t/c3);
+        }else{
+            printf("%5d  %15f  %8f  %8f  %8f\n",n,t,t/c1,t/c2,t/c3);
         }
-
-        printf("%5d  %15f  %8f  %8f  %8f\n",n,t,t/c1,t/c2,t/c3);
 
         n = n *2;
     }
@@ -179,13 +181,20 @@ void TimeSubMax2(){
 
 
 int main(){
+    int i = 0,n = 3;
+
     inicializar_semilla();
     printf("Test 1\n\n");
     test1();
     printf("\nTest 2\n\n");
     test2();
-    printf("Tiempos sumasubmax1 \n");
-    TimeSubMax1();
-    printf("Tiempos sumasubmax2 \n");
-    TimeSubMax2();
+    while(i < n){
+        printf("Tiempos sumasubmax1 \n");
+        TimeSubMax1();
+        printf("\n");
+        printf("Tiempos sumasubmax2 \n");
+        TimeSubMax2();
+        printf("\n");
+        i++;
+    }
 }
