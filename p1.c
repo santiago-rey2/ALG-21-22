@@ -124,7 +124,7 @@ void TimeSubMax1(){
     while (n <= 32000)
     {
         aleatorio(v,n);
-        c1 = pow(n,1.8),c2 = pow(n,1.95);c3 = pow(n,2.2); 
+        c1 = pow(n,1.8);c2 = pow(n,1.95);c3 = pow(n,2.2); 
         ta = microsegundos();
         sumaSubMax1(v,n);
         tb = microsegundos();
@@ -153,7 +153,7 @@ void TimeSubMax2(){
     while (n <= 32000)
     {
         aleatorio(v,n);
-        c1 = pow(n,0.9),c2 = pow(n,1);c3 = pow(n,1.2); 
+        c1 = pow(n,0.9);c2 = pow(n,1);c3 = pow(n,1.2); 
         ta = microsegundos();
         sumaSubMax2(v,n);
         tb = microsegundos();
