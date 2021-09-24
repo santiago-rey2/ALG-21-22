@@ -175,10 +175,10 @@ int main() {
     printf("\nTest 2\n\n");
     test2();
     while (i < n) {
-        printf("\nTiempos sumasubmax1 \n");
+        printf("\nTiempos sumasubmax1 \n\n");
         TimeSubMax1();
         printf("\n");
-        printf("Tiempos sumasubmax2 \n");
+        printf("Tiempos sumasubmax2 \n\n");
         TimeSubMax2();
         printf("\n");
         i++;
