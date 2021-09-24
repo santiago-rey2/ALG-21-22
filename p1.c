@@ -112,10 +112,11 @@ void TimeSubMax1() {
     int n = 500, v[32000], i, k = 100;
     double ta, tb, t, c1, c2, c3;
 
+    printf("     n           t(n)      t(n)/n^1.8     t(n)/n^2     t(n)/n^2.2\n");
     while (n <= 32000) {
         aleatorio(v, n);
         c1 = pow(n, 1.8);
-        c2 = pow(n, 1.95);
+        c2 = pow(n, 2);
         c3 = pow(n, 2.2);
         ta = microsegundos();
         sumaSubMax1(v, n);
@@ -128,9 +129,9 @@ void TimeSubMax1() {
             }
             tb = microsegundos();
             t = (tb - ta) / k;
-            printf("* %5d  %15f  %8f  %8f  %8f\n", n, t, t / c1, t / c2, t / c3);
+            printf("* %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
         } else {
-            printf("  %5d  %15f  %8f  %8f  %8f\n", n, t, t / c1, t / c2, t / c3);
+            printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
         }
         n = n * 2;
     }
@@ -139,12 +140,13 @@ void TimeSubMax1() {
 void TimeSubMax2() {
     int n = 500, v[32000], i, k = 10000;
     double ta, tb, t, c1, c2, c3;
-
+    
+    printf("     n            t(n)     t(n)/n^0.9      t(n)/n      t(n)/n^1.1\n");
     while (n <= 32000) {
         aleatorio(v, n);
         c1 = pow(n, 0.9);
         c2 = pow(n, 1);
-        c3 = pow(n, 1.2);
+        c3 = pow(n, 1.1);
         ta = microsegundos();
         sumaSubMax2(v, n);
         tb = microsegundos();
@@ -156,9 +158,9 @@ void TimeSubMax2() {
             }
             tb = microsegundos();
             t = (tb - ta) / k;
-            printf("* %5d  %15f  %8f  %8f  %8f\n", n, t, t / c1, t / c2, t / c3);
+            printf("* %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
         } else {
-            printf("  %5d  %15f  %8f  %8f  %8f\n", n, t, t / c1, t / c2, t / c3);
+            printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
         }
         n = n * 2;
     }
