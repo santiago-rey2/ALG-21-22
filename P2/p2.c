@@ -88,10 +88,17 @@ void listarvector(int v[], int n) {
     }
 }
 
+/*
+La funcion comprobar orden tendrá como entrada un vector y su tamaño
+y nos devolvera 0 en caso de que el vector no esté ordenado y 1 en caso
+de estar ordenado.Comprobamos el orden mirando que el anterior sea inferior 
+al siguiente.
+*/
+
 int comprobarOrden(int v[],int n){
     int i = 1,result;
     for(i=1;i< n;i++){
-        if(v[i-1]< v[i]){
+        if(v[i-1]<= v[i]){
             result = 1;
         }else{
             result = 0;
@@ -101,11 +108,20 @@ int comprobarOrden(int v[],int n){
     return result;
 }
 
+double microsegundos() { /* obtiene la hora del sistema en microsegundos */
+    struct timeval t;
+    
+    if (gettimeofday(&t, NULL) < 0)
+        return 0.0;
+    return (t.tv_usec + t.tv_sec * 1000000.0);
+}
+
 void test1(){
-    int v[32000],n = 10;
+    int n = 10,v[n];
     ascendente(v,n);
     printf("Ascendente \n");
     listarvector(v,n);
+    comprobarOrden(v,n);
     printf("\n Descendente \n");
     descendente(v,n);
     listarvector(v,n);
@@ -116,46 +132,231 @@ void test1(){
 
 void testSeleccion(){
     int n =10,v[n];
-    printf("\n Inicializacion Ascendente\n");
-    ascendente(v,n);
-    listarvector(v,n);
-    OrdenacionSeleccion(v,n);
-    printf("\n  Vector Ordenado\n");
-    listarvector(v,n);
-    printf("\n Inicializacion Descendente \n");
+
+    printf(" Inicializacion Descendente \n");
     descendente(v,n);
     listarvector(v,n);
+    printf("\n Ordenado : %d \n",comprobarOrden(v,n));
     OrdenacionSeleccion(v,n);
-    printf("\n  Vector Ordenado\n");
+    printf(" Ordenacion por Seleccion \n");
     listarvector(v,n);
+    printf("\n Ordenado : %d \n",comprobarOrden(v,n));
+
     printf("\n Inicializacion Aleatoria \n");
     aleatorio(v,n);
     listarvector(v,n);
+    printf("\n Ordenado : %d \n",comprobarOrden(v,n));
+    printf(" Ordenacion por Seleccion \n");
     OrdenacionSeleccion(v,n);
-    printf("\n  Vector Ordenado\n");
     listarvector(v,n);
+    printf("\n Ordenado : %d \n",comprobarOrden(v,n));
 }
 
 void testShell(){
     int n =10,v[n];
-    printf("\n Inicializacion Ascendente\n");
-    ascendente(v,n);
-    listarvector(v,n);
-    OrdenacionShell(v,n);
-    printf("\n  Vector Ordenado\n");
-    listarvector(v,n);
-    printf("\n Inicializacion Descendente \n");
+    printf(" Inicializacion Descendente \n");
     descendente(v,n);
     listarvector(v,n);
+    printf("\n Ordenado : %d \n",comprobarOrden(v,n));
     OrdenacionShell(v,n);
-    printf("\n  Vector Ordenado\n");
+    printf(" Ordenacion por Shell \n");
     listarvector(v,n);
+    printf("\n Ordenado : %d \n",comprobarOrden(v,n));
+
     printf("\n Inicializacion Aleatoria \n");
     aleatorio(v,n);
     listarvector(v,n);
+    printf("\n Ordenado : %d \n",comprobarOrden(v,n));
+    printf(" Ordenacion por Shell \n");
     OrdenacionShell(v,n);
-    printf("\n  Vector Ordenado\n");
     listarvector(v,n);
+    printf("\n Ordenado : %d \n",comprobarOrden(v,n));
+}
+
+void tiemposShellAsc(){
+    int v[64000],n = 500,k = 1000,i;
+    double ta,tb,t,c1,c2,c3;
+    while(n <= 64000){
+        c1 = pow(n,1);c2 = pow(n,1.2);c3 = pow(n,1.4);
+        ascendente(v,n);
+        ta = microsegundos();
+        OrdenacionShell(v,n);
+        tb = microsegundos();
+        t = tb-ta;
+        if(t < 500){
+            ta = microsegundos();
+            for(i=0;i<k;i++){
+                ascendente(v,n);
+                OrdenacionShell(v,n);
+            }
+            tb = microsegundos();
+            t = tb-ta;
+            ta = microsegundos();
+            for ( i = 0; i < k; i++)
+            {
+                ascendente(v,n);
+            }
+            tb = microsegundos();
+            t = (t-(tb-ta))/k; 
+        }
+        printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+        n = n*2;
+    }
+}
+
+void tiemposShellDesc(){
+    int v[64000],n = 500,k = 1000,i;
+    double ta,tb,t,c1,c2,c3;
+    while(n <= 64000){
+        c1 = pow(n,1);c2 = pow(n,1.2);c3 = pow(n,1.4);
+        descendente(v,n);
+        ta = microsegundos();
+        OrdenacionShell(v,n);
+        tb = microsegundos();
+        t = tb-ta;
+        if(t < 500){
+            ta = microsegundos();
+            for(i=0;i<k;i++){
+                descendente(v,n);
+                OrdenacionShell(v,n);
+            }
+            tb = microsegundos();
+            t = tb-ta;
+            ta = microsegundos();
+            for ( i = 0; i < k; i++)
+            {
+                descendente(v,n);
+            }
+            tb = microsegundos();
+            t = (t-(tb-ta))/k; 
+        }
+        printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+        n = n*2;
+    }
+}
+
+void tiemposShellAleatorio(){
+    int v[64000],n = 500,k = 1000,i;
+    double ta,tb,t,c1,c2,c3;
+    while(n <= 64000){
+        c1 = pow(n,1);c2 = pow(n,1.2);c3 = pow(n,1.4);
+        aleatorio(v,n);
+        ta = microsegundos();
+        OrdenacionShell(v,n);
+        tb = microsegundos();
+        t = tb-ta;
+        if(t < 500){
+            ta = microsegundos();
+            for(i=0;i<k;i++){
+                aleatorio(v,n);
+                OrdenacionShell(v,n);
+            }
+            tb = microsegundos();
+            t = tb-ta;
+            ta = microsegundos();
+            for ( i = 0; i < k; i++)
+            {
+                aleatorio(v,n);
+            }
+            tb = microsegundos();
+            t = (t-(tb-ta))/k; 
+        }
+        printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+        n = n*2;
+    }
+}
+
+void tiemposSeleccionAsc(){
+    int v[64000],n = 500,k = 1000,i;
+    double ta,tb,t,c1,c2,c3;
+    while(n <= 64000){
+        c1 = pow(n,1);c2 = pow(n,1.2);c3 = pow(n,1.4);
+        ascendente(v,n);
+        ta = microsegundos();
+        OrdenacionSeleccion(v,n);
+        tb = microsegundos();
+        t = tb-ta;
+        if(t < 500){
+            ta = microsegundos();
+            for(i=0;i<k;i++){
+                ascendente(v,n);
+                OrdenacionSeleccion(v,n);
+            }
+            tb = microsegundos();
+            t = tb-ta;
+            ta = microsegundos();
+            for ( i = 0; i < k; i++)
+            {
+                ascendente(v,n);
+            }
+            tb = microsegundos();
+            t = (t-(tb-ta))/k; 
+        }
+        printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+        n = n*2;
+    }
+}
+
+void tiemposSeleccionDesc(){
+    int v[64000],n = 500,k = 1000,i;
+    double ta,tb,t,c1,c2,c3;
+    while(n <= 64000){
+        c1 = pow(n,1);c2 = pow(n,1.2);c3 = pow(n,1.4);
+        descendente(v,n);
+        ta = microsegundos();
+        OrdenacionSeleccion(v,n);
+        tb = microsegundos();
+        t = tb-ta;
+        if(t < 500){
+            ta = microsegundos();
+            for(i=0;i<k;i++){
+                descendente(v,n);
+                OrdenacionSeleccion(v,n);
+            }
+            tb = microsegundos();
+            t = tb-ta;
+            ta = microsegundos();
+            for ( i = 0; i < k; i++)
+            {
+                descendente(v,n);
+            }
+            tb = microsegundos();
+            t = (t-(tb-ta))/k; 
+        }
+        printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+        n = n*2;
+    }
+}
+
+void tiemposSeleccionAleatorio(){
+    int v[64000],n = 500,k = 1000,i;
+    double ta,tb,t,c1,c2,c3;
+    while(n <= 64000){
+        c1 = pow(n,1);c2 = pow(n,1.2);c3 = pow(n,1.4);
+        aleatorio(v,n);
+        ta = microsegundos();
+        OrdenacionSeleccion(v,n);
+        tb = microsegundos();
+        t = tb-ta;
+        if(t < 500){
+            ta = microsegundos();
+            for(i=0;i<k;i++){
+                aleatorio(v,n);
+                OrdenacionSeleccion(v,n);
+            }
+            tb = microsegundos();
+            t = tb-ta;
+            ta = microsegundos();
+            for ( i = 0; i < k; i++)
+            {
+                aleatorio(v,n);
+            }
+            tb = microsegundos();
+            t = (t-(tb-ta))/k; 
+        }
+        printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+        n = n*2;
+    }
 }
 
 int main(){
@@ -163,4 +364,10 @@ int main(){
     test1();
     testSeleccion();
     testShell();
+    tiemposShellAsc();
+    tiemposShellDesc();
+    tiemposShellAleatorio();
+    tiemposSeleccionAsc();
+    tiemposSeleccionDesc();
+    tiemposShellAleatorio();
 }
