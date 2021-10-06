@@ -88,6 +88,19 @@ void listarvector(int v[], int n) {
     }
 }
 
+int comprobarOrden(int v[],int n){
+    int i = 1,result;
+    for(i=1;i< n;i++){
+        if(v[i-1]< v[i]){
+            result = 1;
+        }else{
+            result = 0;
+            break;
+        }
+    }
+    return result;
+}
+
 void test1(){
     int v[32000],n = 10;
     ascendente(v,n);
