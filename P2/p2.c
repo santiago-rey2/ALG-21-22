@@ -5,6 +5,8 @@
 #include <sys/time.h>
 #include <stdbool.h>
 
+#define VMAX 256000
+
 void OrdenacionSeleccion(int v[],int n){
     int i,j,minj,minx;
     for(i = 0;i < n-1;i++) {
@@ -173,11 +175,13 @@ void testShell(){
     printf("\n Ordenado : %d \n",comprobarOrden(v,n));
 }
 
+//Cota Ajustada
+
 void tiemposShellAsc(){
-    int v[64000],n = 500,k = 1000,i;
+    int v[VMAX],n = 2000,k = 1000,i;
     double ta,tb,t,c1,c2,c3;
-    while(n <= 64000){
-        c1 = pow(n,1);c2 = pow(n,1.2);c3 = pow(n,1.4);
+    while(n <= VMAX){
+        c1 = pow(n,1);c2 = pow(n,1.122);c3 = pow(n,1.4);
         ascendente(v,n);
         ta = microsegundos();
         OrdenacionShell(v,n);
@@ -198,17 +202,20 @@ void tiemposShellAsc(){
             }
             tb = microsegundos();
             t = (t-(tb-ta))/k; 
+            printf("* %6d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+        }else{
+            printf("  %6d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
         }
-        printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
         n = n*2;
     }
 }
 
+//Cota Ajustada
 void tiemposShellDesc(){
-    int v[64000],n = 500,k = 1000,i;
+    int v[VMAX],n = 500,k = 1000,i;
     double ta,tb,t,c1,c2,c3;
-    while(n <= 64000){
-        c1 = pow(n,1);c2 = pow(n,1.2);c3 = pow(n,1.4);
+    while(n <= VMAX/4){
+        c1 = pow(n,1);c2 = pow(n,1.118);c3 = pow(n,1.4);
         descendente(v,n);
         ta = microsegundos();
         OrdenacionShell(v,n);
@@ -229,16 +236,20 @@ void tiemposShellDesc(){
             }
             tb = microsegundos();
             t = (t-(tb-ta))/k; 
+            printf("* %6d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+        }else{
+            printf("  %6d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
         }
-        printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+        
         n = n*2;
     }
 }
 
+//Cota Ajustada
 void tiemposShellAleatorio(){
-    int v[64000],n = 500,k = 1000,i;
+    int v[VMAX],n = 500,k = 1000,i;
     double ta,tb,t,c1,c2,c3;
-    while(n <= 64000){
+    while(n <= VMAX/4){
         c1 = pow(n,1);c2 = pow(n,1.2);c3 = pow(n,1.4);
         aleatorio(v,n);
         ta = microsegundos();
@@ -259,18 +270,24 @@ void tiemposShellAleatorio(){
                 aleatorio(v,n);
             }
             tb = microsegundos();
-            t = (t-(tb-ta))/k; 
+            t = (t-(tb-ta))/k;
+
+            printf("* %6d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+
+        }else{
+        printf("  %6d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
         }
-        printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+        
         n = n*2;
     }
 }
 
+//Cota Ajustada
 void tiemposSeleccionAsc(){
-    int v[64000],n = 500,k = 1000,i;
+    int v[VMAX],n = 500,k = 1000,i;
     double ta,tb,t,c1,c2,c3;
-    while(n <= 64000){
-        c1 = pow(n,1);c2 = pow(n,1.2);c3 = pow(n,1.4);
+    while(n <= VMAX/4){
+        c1 = pow(n,1.6);c2 = pow(n,2);c3 = pow(n,2.2);
         ascendente(v,n);
         ta = microsegundos();
         OrdenacionSeleccion(v,n);
@@ -291,17 +308,21 @@ void tiemposSeleccionAsc(){
             }
             tb = microsegundos();
             t = (t-(tb-ta))/k; 
+            printf("* %6d  %15f    %8f      %9f      %9f\n", n, t, t / c1, t / c2, t / c3);
+
+        }else{
+        printf("  %6d  %15f    %8f      %9f      %9f\n", n, t, t / c1, t / c2, t / c3);
         }
-        printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
         n = n*2;
     }
 }
 
+//Cota Ajustada
 void tiemposSeleccionDesc(){
-    int v[64000],n = 500,k = 1000,i;
+    int v[VMAX],n = 500,k = 1000,i;
     double ta,tb,t,c1,c2,c3;
-    while(n <= 64000){
-        c1 = pow(n,1);c2 = pow(n,1.2);c3 = pow(n,1.4);
+    while(n <= VMAX/4){
+        c1 = pow(n,1.7);c2 = pow(n,2);c3 = pow(n,2.2);
         descendente(v,n);
         ta = microsegundos();
         OrdenacionSeleccion(v,n);
@@ -322,17 +343,21 @@ void tiemposSeleccionDesc(){
             }
             tb = microsegundos();
             t = (t-(tb-ta))/k; 
+            printf("* %6d  %15f    %8f      %9f      %9f\n", n, t, t / c1, t / c2, t / c3);
+
+        }else{
+        printf("  %6d  %15f    %8f      %9f      %9f\n", n, t, t / c1, t / c2, t / c3);
         }
-        printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
         n = n*2;
     }
 }
 
+//Cota Ajustada
 void tiemposSeleccionAleatorio(){
-    int v[64000],n = 500,k = 1000,i;
+    int v[VMAX],n = 500,k = 1000,i;
     double ta,tb,t,c1,c2,c3;
-    while(n <= 64000){
-        c1 = pow(n,1);c2 = pow(n,1.2);c3 = pow(n,1.4);
+    while(n <= VMAX/4){
+        c1 = pow(n,1.7);c2 = pow(n,1.99);c3 = pow(n,2.2);
         aleatorio(v,n);
         ta = microsegundos();
         OrdenacionSeleccion(v,n);
@@ -353,21 +378,29 @@ void tiemposSeleccionAleatorio(){
             }
             tb = microsegundos();
             t = (t-(tb-ta))/k; 
+            printf("* %6d  %15f    %8f      %9f      %9f\n", n, t, t / c1, t / c2, t / c3);
+
+        }else{
+        printf("  %6d  %15f    %8f      %9f      %9f\n", n, t, t / c1, t / c2, t / c3);
         }
-        printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
         n = n*2;
     }
 }
 
 int main(){
+    int i = 0;
     inicializar_semilla();
-    test1();
-    testSeleccion();
-    testShell();
-    tiemposShellAsc();
-    tiemposShellDesc();
-    tiemposShellAleatorio();
-    tiemposSeleccionAsc();
-    tiemposSeleccionDesc();
-    tiemposShellAleatorio();
+    //test1();
+    //testSeleccion();
+    //testShell();
+    while(i < 4){
+        //tiemposShellAsc();
+        //tiemposShellDesc();
+        //tiemposShellAleatorio();
+        //tiemposSeleccionAsc();
+        //tiemposSeleccionDesc();
+        tiemposSeleccionAleatorio();
+        printf("\n");
+        i++;
+    }
 }
