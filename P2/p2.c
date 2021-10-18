@@ -212,9 +212,9 @@ void tiemposShellAsc(){
 
 //Cota Ajustada
 void tiemposShellDesc(){
-    int v[VMAX],n = 500,k = 1000,i;
+    int v[VMAX],n = 2000,k = 1000,i;
     double ta,tb,t,c1,c2,c3;
-    while(n <= VMAX/4){
+    while(n <= VMAX){
         c1 = pow(n,1);c2 = pow(n,1.118);c3 = pow(n,1.4);
         descendente(v,n);
         ta = microsegundos();
@@ -399,7 +399,7 @@ int main(){
         //tiemposShellAleatorio();
         //tiemposSeleccionAsc();
         //tiemposSeleccionDesc();
-        tiemposSeleccionAleatorio();
+        //tiemposSeleccionAleatorio();
         printf("\n");
         i++;
     }
