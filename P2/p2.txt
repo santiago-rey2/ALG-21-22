@@ -1,9 +1,10 @@
-*Practica 1 de Algoritmos* 
+*Practica 2 de Algoritmos* 
 
 Daniela Cisneros: d.cisneross.
 Alexander Hermida Pazos: alexander.hermida.
 Santiago Rey Garcia: santiago.rey2.
  
+La finalidad de esta practica consiste en ordenar de manera ascendente vectores de n numeros enteros con los algoritmos de ordenacion por seleccion y ordenacion shell. 
 
 El ordenador con el que hemos realizado las mediciones tiene las siguientes caracteristicas: 
 
@@ -12,7 +13,9 @@ El ordenador con el que hemos realizado las mediciones tiene las siguientes cara
 -Equipo: Ryzen 3600X 6 cores 12 hilos.
 -Memoria RAM: 32 GiB.
 
-Tiempos Shell
+La unidad de tiempo que estamos utilizando son microsegundos; los vectores siguen una progresion geometrica de razon dos. 
+
+Tiempos Shell:   
 
 Ascendente:
 
@@ -25,6 +28,11 @@ Ascendente:
   128000      6446.000000    0.050359      0.011995      0.000456
   256000     14290.000000    0.055820      0.012218      0.000383
 
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^1
+Cota ajustada = n^.1.122 Constante: 0.012 
+Cota sobrestimada = n^1.4  
+
 Descendente:
 
 *   2000        94.390000    0.047195      0.019248      0.002257
@@ -35,6 +43,11 @@ Descendente:
    64000      4381.000000    0.068453      0.018547      0.000818
   128000      9470.000000    0.073984      0.018471      0.000670
   256000     20428.000000    0.079797      0.018358      0.000548
+
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^1
+Cota ajustada = n^1.118. Constante: 0.018  
+Cota sobrestimada = n^1.4  
 
 Aleatorio:
 
@@ -47,7 +60,12 @@ Aleatorio:
    32000      6144.000000    0.192000      0.024114      0.003029
    64000     13836.000000    0.216188      0.023637      0.002584
 
-Tiempos Selección:
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^1
+Cota ajustada = n^1.2. Constante: 0.024
+Cota sobrestimada = n^1.4   
+
+Tiempos Selección: 
 
 Ascendente:
 
@@ -60,6 +78,12 @@ Ascendente:
    32000    937163.000000    0.058020       0.000915       0.000115
    64000   3751263.000000    0.076611       0.000916       0.000100
 
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^1.6
+Cota ajustada = n^2. Constante: 0.00092
+Cota sobrestimada = n^2.2
+
+
 Descendente:
 
 *    500       264.850000    0.006835       0.001059       0.000306
@@ -70,6 +94,11 @@ Descendente:
    16000    265507.000000    0.018927       0.001037       0.000150
    32000   1061441.000000    0.023288       0.001037       0.000130
    64000   4250294.000000    0.028702       0.001038       0.000113
+
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^1.7
+Cota ajustada = n^2 Constante: 0.0010
+Cota sobrestimada = n^2.2   
 
 Aleatorio:
 
@@ -82,3 +111,16 @@ Aleatorio:
    32000    937529.000000    0.020570       0.001016       0.000115
    64000   3743697.000000    0.025281       0.001021       0.000100
 
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^1.7
+Cota ajustada = n^1.99. Constante: 0.0010
+Cota sobrestimada = n^2.2
+
+En las medidas de tiempos menores de 500 micras imprime un asterisco como podemos observar anteriormente. Una vez dentro del bucle 
+que se ejecuta en dichas medidas inicializamos k = 1000. 
+
+Concluimos con la realizacion de este trabajo que en todos los casos el algoritmo de ordenacion por Shell es mas rapido que el algoritmo de seleccion. 
+
+En cuanto a complejidades en el algoritmo de Shell tenemos que la teorica en el peor caso es n^2, con esta implementacion demostramos empiricamente que mejora a n^7/6 aproximadamente para los casos medios. El peor caso es el aleatorio ya que nos da un tiempo muy superior al obtenido en descendiente y ascendente siendo este ultimo el mejor caso.
+
+Por otro lado en ordenacion por seleccion en todos los casos tenemos la misma complejidad empirica que cuadra con la teorica y podemos comprobar que aun asi siendo los tiempos de orden descendente son superiores a los tiempos del aleatorio y al del ascendente, siendo estos ultimos relativamente iguales. 
