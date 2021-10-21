@@ -65,6 +65,7 @@ Cota subestimada = n^1
 Cota ajustada = n^1.2. Constante: 0.024
 Cota sobrestimada = n^1.4   
 
+
 Tiempos Selección: 
 
 Ascendente:
@@ -82,7 +83,6 @@ Ascendente:
 Cota subestimada = n^1.6
 Cota ajustada = n^2. Constante: 0.00092
 Cota sobrestimada = n^2.2
-
 
 Descendente:
 
@@ -115,6 +115,7 @@ Aleatorio:
 Cota subestimada = n^1.7
 Cota ajustada = n^1.99. Constante: 0.0010
 Cota sobrestimada = n^2.2
+
 
 En las medidas de tiempos menores de 500 micras imprime un asterisco como podemos observar anteriormente. Una vez dentro del bucle 
 que se ejecuta en dichas medidas inicializamos k = 1000. 
