@@ -18,7 +18,7 @@ La unidad de tiempo que estamos utilizando son microsegundos; los vectores sigue
 Tiempos Shell:   
 
 Ascendente:
-
+     n             t(n)       t(n)/n     t(n)/n^1.122   t(n)/n^1.4
 *   2000        65.218000    0.032609      0.012901      0.001559
 *   4000       140.704000    0.035176      0.012788      0.001275
 *   8000       298.103000    0.037263      0.012448      0.001023
@@ -34,7 +34,7 @@ Cota ajustada = n^.1.122 Constante: 0.012
 Cota sobrestimada = n^1.4  
 
 Descendente:
-
+     n            t(n)        t(n)/n     t(n)/n^1.118   t(n)/n^1.4
 *   2000        94.390000    0.047195      0.019248      0.002257
 *   4000       208.566000    0.052142      0.019595      0.001890
 *   8000       453.759000    0.056720      0.019641      0.001558
@@ -50,7 +50,7 @@ Cota ajustada = n^1.118. Constante: 0.018
 Cota sobrestimada = n^1.4  
 
 Aleatorio:
-
+      n           t(n)        t(n)/n      t(n)/n^1.2    t(n)/n^1.4
 *    500        42.784000    0.085568      0.024690      0.007124
 *   1000        98.839000    0.098839      0.024827      0.006236
 *   2000       225.346000    0.112673      0.024638      0.005388
@@ -65,11 +65,10 @@ Cota subestimada = n^1
 Cota ajustada = n^1.2. Constante: 0.024
 Cota sobrestimada = n^1.4   
 
-
 Tiempos Selección: 
 
 Ascendente:
-
+      n           t(n)      t(n)/n^1.6      t(n)/n^2      t(n)/n^2.2
 *    500       235.959000    0.011337       0.000944       0.000272
     1000       918.000000    0.014549       0.000918       0.000231
     2000      3658.000000    0.019125       0.000914       0.000200
@@ -84,8 +83,9 @@ Cota subestimada = n^1.6
 Cota ajustada = n^2. Constante: 0.00092
 Cota sobrestimada = n^2.2
 
-Descendente:
 
+Descendente:
+      n           t(n)      t(n)/n^1.7      t(n)/n^2      t(n)/n^2.2
 *    500       264.850000    0.006835       0.001059       0.000306
     1000      1065.000000    0.008460       0.001065       0.000268
     2000      4225.000000    0.010329       0.001056       0.000231
@@ -101,7 +101,7 @@ Cota ajustada = n^2 Constante: 0.0010
 Cota sobrestimada = n^2.2   
 
 Aleatorio:
-
+      n           t(n)      t(n)/n^1.7    t(n)/n^1.99     t(n)/n^2.2
 *    500       255.658000    0.006598       0.001088       0.000295
     1000       963.000000    0.007649       0.001032       0.000242
     2000      3783.000000    0.009249       0.001020       0.000207
@@ -115,7 +115,6 @@ Aleatorio:
 Cota subestimada = n^1.7
 Cota ajustada = n^1.99. Constante: 0.0010
 Cota sobrestimada = n^2.2
-
 
 En las medidas de tiempos menores de 500 micras imprime un asterisco como podemos observar anteriormente. Una vez dentro del bucle 
 que se ejecuta en dichas medidas inicializamos k = 1000. 
