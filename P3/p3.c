@@ -45,11 +45,11 @@ void OrdenarAux(int *v,int izq,int der){
         i = izq;
         j = der;
         do{
-            do{i++;}while(v[i]>= pivote);
-            do{j--;}while(v[j]<= pivote);
+            do{i++;}while(v[i]< pivote);
+            do{j--;}while(v[j]> pivote);
             intercambiar(v[i],v[j]);
             
-        }while(j <= i);
+        }while(j > i);
         
         intercambiar(v[i],v[j]);
         intercambiar(v[izq],v[j]);
@@ -169,7 +169,7 @@ void testInsercion() {
 //============= Test Quick Sort =================
 
 void testQuickSort() {
-    int n = 1000,*v;
+    int n = 10,*v;
     
     v = malloc(n*sizeof(int));
 
@@ -203,11 +203,32 @@ double microsegundos() { /* obtiene la hora del sistema en microsegundos */
     return (t.tv_usec + t.tv_sec * 1000000.0);
 }
 
+void cotas(void(*ordenar)(int*,int),void(*inicializar)(int*,int),int n,
+    double* c1,double* c2,double* c3){
+    if(ordenar == OrdenacionInsercion && inicializar == descendente){
+        *c1 = pow(n, 1.5);*c2 = pow(n, 2);*c3 = pow(n, 2.2);
+    }
+    if(ordenar == OrdenacionInsercion && inicializar == aleatorio){
+        *c1 = pow(n, 1.5);*c2 = pow(n, 2);*c3 = pow(n, 2.2);
+    }
+    if(ordenar == OrdenacionInsercion && inicializar == ascendente){
+        *c1 = pow(n, 0.8);*c2 = pow(n, 1);*c3 = pow(n, 1.2);
+    }
+    if(ordenar == OrdenacionQuickSort && inicializar == descendente){
+        *c1 = pow(n, 1);*c2 = pow(n, 1.2);*c3 = pow(n, 1.4);
+    }
+    if(ordenar == OrdenacionQuickSort && inicializar == aleatorio){
+        *c1 = pow(n, 1);*c2 = pow(n, 1.2);*c3 = pow(n, 1.4);
+    }
+    if(ordenar == OrdenacionQuickSort && inicializar == ascendente){
+        *c1 = pow(n, 1);*c2 = pow(n, 1.2);*c3 = pow(n, 1.4);
+    }
+}
+
 
 void medirTiemposGeneral(void(*ordenar)(int*,int),void(*inicializar)(int*,int)){
     int n=1000,k = 1000, i; int*v;
-    double ta, tb, t, c1, c2, c3;
-    c1 = pow(n, 1.5);c2 = pow(n, 2);c3 = pow(n, 2);
+    double ta, tb, t, c1 = 0, c2 = 0 , c3 = 0;
     printf("    n           t(n)        t(n)/sub    t(n)/est  t(n)/sobre\n");
     while (n <= 64000) {
         v = malloc(n*sizeof(int)); 
@@ -234,18 +255,22 @@ void medirTiemposGeneral(void(*ordenar)(int*,int),void(*inicializar)(int*,int)){
         } else {
             printf(" ");
         }
+        cotas(ordenar,inicializar,n,&c1,&c2,&c3);
         printf("%6d %15f  %11f  %11f  %11f\n", n, t, t/c1, t/c2, t/c3);
         n = n * 2;
         free(v);
     }
-    
 }
 
 void tiempos(){
     printf("Tiempos Inserción\n");
     medirTiemposGeneral(OrdenacionInsercion,descendente);
-    //printf("\nTiempos QuickSort\n");
-    //medirTiemposGeneral(OrdenacionQuickSort,descendente);
+    medirTiemposGeneral(OrdenacionInsercion,aleatorio);
+    medirTiemposGeneral(OrdenacionInsercion,ascendente);
+    printf("\nTiempos QuickSort\n");
+    medirTiemposGeneral(OrdenacionQuickSort,descendente);
+    medirTiemposGeneral(OrdenacionQuickSort,aleatorio);
+    medirTiemposGeneral(OrdenacionQuickSort,ascendente);
 }
 
 int main(){ 
