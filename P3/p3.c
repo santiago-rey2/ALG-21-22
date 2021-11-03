@@ -202,35 +202,42 @@ double microsegundos() { /* obtiene la hora del sistema en microsegundos */
         return 0.0;
     return (t.tv_usec + t.tv_sec * 1000000.0);
 }
-
+/*Esta función cotas recibe la funcion ordenar, la funcion inicializar y las variables
+  de tamaño de vector, su funcionamiento es comparar si se esta utilizando un tipo de ordenacion
+  con una inicialización concreta comparando los apuntadores a esas funciones y dependiendo de
+  las funciones calculará las cotas de las funciones*/
 void cotas(void(*ordenar)(int*,int),void(*inicializar)(int*,int),int n,
     double* c1,double* c2,double* c3){
     if(ordenar == OrdenacionInsercion && inicializar == descendente){
-        *c1 = pow(n, 1.5);*c2 = pow(n, 2);*c3 = pow(n, 2.2);
+        *c1 = pow(n, 1.9);*c2 = pow(n, 2);*c3 = pow(n, 2.1);
     }
     if(ordenar == OrdenacionInsercion && inicializar == aleatorio){
-        *c1 = pow(n, 1.5);*c2 = pow(n, 2);*c3 = pow(n, 2.2);
+        *c1 = pow(n, 1.9);*c2 = pow(n, 2);*c3 = pow(n, 2.1);
     }
     if(ordenar == OrdenacionInsercion && inicializar == ascendente){
-        *c1 = pow(n, 0.8);*c2 = pow(n, 1);*c3 = pow(n, 1.2);
+        *c1 = pow(n, 0.9);*c2 = pow(n, 1);*c3 = pow(n, 1.1);
     }
     if(ordenar == OrdenacionQuickSort && inicializar == descendente){
-        *c1 = pow(n, 1);*c2 = pow(n, 1.2);*c3 = pow(n, 1.4);
+        *c1 = pow(n, 1);*c2 = pow(n, 1.12);*c3 = pow(n, 1.2);
     }
     if(ordenar == OrdenacionQuickSort && inicializar == aleatorio){
-        *c1 = pow(n, 1);*c2 = pow(n, 1.2);*c3 = pow(n, 1.4);
+        *c1 = pow(n, 1);*c2 = pow(n, 1.101);*c3 = pow(n, 1.15);
     }
     if(ordenar == OrdenacionQuickSort && inicializar == ascendente){
-        *c1 = pow(n, 1);*c2 = pow(n, 1.2);*c3 = pow(n, 1.4);
+        *c1 = pow(n, 1);*c2 = pow(n, 1.117);*c3 = pow(n, 1.2);
     }
 }
 
+/*Esta función calcula de forma general los tiempos de ejecución de cualquier funcion que se le pase por parametro
+ segun la inicialización que tambien le pasemos por parametro, por defecto trabaja con un vector inicial de 2000 elementos hasta
+ un maximo de 512000 elementos
+*/
 
 void medirTiemposGeneral(void(*ordenar)(int*,int),void(*inicializar)(int*,int)){
-    int n=1000,k = 1000, i; int*v;
+    int n=2000,k = 1000, i; int*v;
     double ta, tb, t, c1 = 0, c2 = 0 , c3 = 0;
-    printf("    n           t(n)        t(n)/sub    t(n)/est  t(n)/sobre\n");
-    while (n <= 64000) {
+    printf("    n          t(n)        t(n)/sub     t(n)/est    t(n)/sobre\n");
+    while (n <= 512000) {
         v = malloc(n*sizeof(int)); 
         inicializar(v, n);
         ta = microsegundos();
@@ -266,22 +273,26 @@ void tiempos(){
     printf("Tiempos Insercion\n");
     printf("\nInicializacion Descendente\n");
     medirTiemposGeneral(OrdenacionInsercion,descendente);
-    printf("\nInicializacion Aleatorio\n");
-    medirTiemposGeneral(OrdenacionInsercion,aleatorio);
-    printf("\nInicializacion Ascendente\n");
-    medirTiemposGeneral(OrdenacionInsercion,ascendente);
-    printf("\nTiempos QuickSort\n");
-    printf("\nInicializacion Descendente\n");
-    medirTiemposGeneral(OrdenacionQuickSort,descendente);
-    printf("\nInicializacion Aleatorio\n");
-    medirTiemposGeneral(OrdenacionQuickSort,aleatorio);
-    printf("\nInicializacion Ascendente\n");
-    medirTiemposGeneral(OrdenacionQuickSort,ascendente);
+     printf("\nInicializacion Aleatorio\n");
+     medirTiemposGeneral(OrdenacionInsercion,aleatorio);
+     printf("\nInicializacion Ascendente\n");
+     medirTiemposGeneral(OrdenacionInsercion,ascendente);
+     printf("\nTiempos QuickSort\n");
+     printf("\nInicializacion Descendente\n");
+     medirTiemposGeneral(OrdenacionQuickSort,descendente);
+     printf("\nInicializacion Aleatorio\n");
+     medirTiemposGeneral(OrdenacionQuickSort,aleatorio);
+     printf("\nInicializacion Ascendente\n");
+     medirTiemposGeneral(OrdenacionQuickSort,ascendente);
 }
 
-int main(){ 
+int main(){
+    int i = 0;
     inicializar_semilla();
-    //testInsercion();
-    //testQuickSort();
-    tiempos();
+    testInsercion();
+    testQuickSort();
+     while(i < 4){
+         tiempos();
+         i++;
+     } 
 }

@@ -1,0 +1,128 @@
+*Practica 3 de Algoritmos* 
+
+Daniela Cisneros: d.cisneross.
+Alexander Hermida Pazos: alexander.hermida.
+Santiago Rey Garcia: santiago.rey2.
+ 
+La finalidad de esta practica consiste en ordenar de manera ascendente vectores de n numeros enteros con los algoritmos de ordenacion por inserción y ordenacion rápida obteniendo sus complejidades de manera empírica. 
+
+El ordenador con el que hemos realizado las mediciones tiene las siguientes caracteristicas: 
+
+-S.O: linuxMint Cinamon. 
+-Version: Ubuntu 20.04.3 LTS.
+-Equipo: Ryzen 3600X 6 cores 12 hilos.
+-Memoria RAM: 32 GiB.
+
+La unidad de tiempo que estamos utilizando son microsegundos; los vectores siguen una progresion geometrica de razon dos.
+
+Tiempos Insercion
+
+Inicializacion Descendente
+    n           t(n)        t(n)/sub    t(n)/est      t(n)/sobre
+
+   1000      875.000000     0.001746     0.000875     0.000439
+   2000     3462.000000     0.001851     0.000865     0.000405
+   4000    14281.000000     0.002046     0.000893     0.000389
+   8000    56919.000000     0.002185     0.000889     0.000362
+  16000   229607.000000     0.002361     0.000897     0.000341
+  32000   917503.000000     0.002528     0.000896     0.000318
+  64000  3665604.000000     0.002706     0.000895     0.000296
+
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^1.9
+Cota ajustada = n^2. Constante: 0.00088  
+Cota sobrestimada = n^2.1 
+
+Inicializacion Aleatorio
+    n           t(n)        t(n)/sub    t(n)/est      t(n)/sobre
+
+*  1000      439.077000     0.000876     0.000439     0.000220
+   2000     1730.000000     0.000925     0.000432     0.000202
+   4000     6819.000000     0.000977     0.000426     0.000186
+   8000    27972.000000     0.001074     0.000437     0.000178
+  16000   111528.000000     0.001147     0.000436     0.000165
+  32000   444083.000000     0.001224     0.000434     0.000154
+  64000  1765933.000000     0.001304     0.000431     0.000143
+
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^1.9
+Cota ajustada = n^2. Constante: 0.00043  
+Cota sobrestimada = n^2.1
+
+Inicializacion Ascendente
+    n            t(n)        t(n)/sub     t(n)/est     t(n)/sobre
+
+*  16000       51.586000     0.008488     0.003224     0.001225
+*  32000      108.265000     0.009547     0.003383     0.001199
+*  64000      219.585000     0.010376     0.003431     0.001135
+* 128000      416.143000     0.010538     0.003251     0.001003
+  256000      829.000000     0.011250     0.003238     0.000932
+  512000     1722.000000     0.012522     0.003363     0.000903
+ 1024000     3462.000000     0.013491     0.003381     0.000847
+ 2048000     7056.000000     0.014735     0.003445     0.000806
+ 4096000    14287.000000     0.015989     0.003488     0.000761
+
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^0.9
+Cota ajustada = n^1. Constante: 0.0033 
+Cota sobrestimada = n^1.1
+
+(empezamos en 16000 elementos y acabamos en +4mill porque con menos elementos los timepos eran demasiado pequeños y nos encontramos demasiadas anomalias)
+
+Tiempos QuickSort
+
+Inicializacion Descendente
+      n           t(n)        t(n)/sub     t(n)/est    t(n)/sobre
+
+  *  2000       21.460000     0.010730     0.004310     0.002346
+  *  4000       47.543000     0.011886     0.004393     0.002263
+  *  8000      109.838000     0.013730     0.004670     0.002275
+  * 16000      232.589000     0.014537     0.004550     0.002097
+  * 32000      498.468000     0.015577     0.004486     0.001956
+    64000     1020.000000     0.015938     0.004224     0.001743
+   128000     2266.000000     0.017703     0.004317     0.001685
+-> 256000     6076.000000     0.023734     0.005326     0.001967
+   512000    10996.000000     0.021477     0.004435     0.001549
+
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^1
+Cota ajustada = n^1.12 Constante: 0.0044 
+Cota sobrestimada = n^1.2
+Medición anomala indicada con 256000 elementos
+
+Inicializacion Aleatorio
+    n           t(n)        t(n)/sub     t(n)/est    t(n)/sobre
+
+*  2000      125.773000     0.062886     0.029185     0.020110
+*  4000      271.885000     0.067971     0.029412     0.019589
+   8000      594.000000     0.074250     0.029956     0.019286
+  16000     1233.000000     0.077063     0.028989     0.018040
+  32000     2681.000000     0.083781     0.029385     0.017676
+  64000     5644.000000     0.088188     0.028839     0.016768
+ 128000    11956.000000     0.093406     0.028481     0.016006
+ 256000    25096.000000     0.098031     0.027870     0.015140
+ 512000    53934.000000     0.105340     0.027923     0.014662
+
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^1
+Cota ajustada = n^1.101 Constante: 0.028 
+Cota sobrestimada = n^1.15
+
+Inicializacion Ascendente
+       n           t(n)        t(n)/sub     t(n)/est    t(n)/sobre
+
+-> *  2000       19.605000     0.009803     0.004028     0.002144
+   *  4000       45.924000     0.011481     0.004350     0.002186
+   *  8000       99.781000     0.012473     0.004358     0.002067
+   * 16000      218.503000     0.013656     0.004400     0.001970
+   * 32000      481.449000     0.015045     0.004470     0.001890
+     64000      989.000000     0.015453     0.004233     0.001690
+    128000     2134.000000     0.016672     0.004212     0.001587
+    256000     4823.000000     0.018840     0.004388     0.001561
+    512000    10222.000000     0.019965     0.004288     0.001440
+
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^1
+Cota ajustada = n^1.117 Constante: 0.0043 
+Cota sobrestimada = n^1.2
+Medición anomala indicada con 2000 elementos
