@@ -148,20 +148,20 @@ void testInsercion() {
     
     v = malloc(n*sizeof(int));
 
-    printf("\n\n Inicializacion Descendente \n\n");
+    printf("\n Inicializacion Descendente \n");
     descendente(v, n);
     listarvector(v, n);
     printf("\n Ordenado : %d \n", comprobarOrden(v, n));
     OrdenacionInsercion(v, n);
-    printf("\n\n Ordenacion por Insercion \n\n");
+    printf("\n Ordenacion por Insercion \n");
     listarvector(v, n);
     printf("\n Ordenado : %d \n", comprobarOrden(v, n));
-    printf("\n\n Inicializacion Aleatoria \n\n");
+    printf("\n Inicializacion Aleatoria \n");
     aleatorio(v, n);
     listarvector(v, n);
     printf("\n Ordenado : %d \n", comprobarOrden(v, n));
     OrdenacionInsercion(v, n);
-    printf("\n\n Ordenacion por Insercion \n\n");
+    printf("\n Ordenacion por Insercion \n");
     listarvector(v, n);
     printf("\n Ordenado : %d \n", comprobarOrden(v, n));
 }
@@ -173,20 +173,20 @@ void testQuickSort() {
     
     v = malloc(n*sizeof(int));
 
-    printf("\n\n Inicializacion Descendente \n\n");
+    printf("\n Inicializacion Descendente \n");
     descendente(v, n);
     listarvector(v, n);
     printf("\n Ordenado : %d \n", comprobarOrden(v, n));
     OrdenacionQuickSort(v, n);
-    printf("\n\n Ordenacion por QuickSort \n\n");
+    printf("\n Ordenacion por QuickSort \n");
     listarvector(v, n);
     printf("\n Ordenado : %d \n", comprobarOrden(v, n));
-    printf("\n\n Inicializacion Aleatorio \n\n");
+    printf("\n Inicializacion Aleatorio \n");
     aleatorio(v, n);
     listarvector(v, n);
     printf("\n Ordenado : %d \n", comprobarOrden(v, n));
     OrdenacionQuickSort(v, n);
-    printf("\n\n Ordenacion por QuickSort \n\n");
+    printf("\n Ordenacion por QuickSort \n");
     listarvector(v, n);
     printf("\n Ordenado : %d \n", comprobarOrden(v, n));
 }
@@ -263,13 +263,19 @@ void medirTiemposGeneral(void(*ordenar)(int*,int),void(*inicializar)(int*,int)){
 }
 
 void tiempos(){
-    printf("Tiempos Inserción\n");
+    printf("Tiempos Insercion\n");
+    printf("\nInicializacion Descendente\n");
     medirTiemposGeneral(OrdenacionInsercion,descendente);
+    printf("\nInicializacion Aleatorio\n");
     medirTiemposGeneral(OrdenacionInsercion,aleatorio);
+    printf("\nInicializacion Ascendente\n");
     medirTiemposGeneral(OrdenacionInsercion,ascendente);
     printf("\nTiempos QuickSort\n");
+    printf("\nInicializacion Descendente\n");
     medirTiemposGeneral(OrdenacionQuickSort,descendente);
+    printf("\nInicializacion Aleatorio\n");
     medirTiemposGeneral(OrdenacionQuickSort,aleatorio);
+    printf("\nInicializacion Ascendente\n");
     medirTiemposGeneral(OrdenacionQuickSort,ascendente);
 }
 
