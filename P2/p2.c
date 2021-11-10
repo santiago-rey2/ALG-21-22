@@ -31,7 +31,7 @@ void OrdenacionShell(int v[], int n) {
         aux = div(incremento, 2);
         incremento = aux.quot;
 
-        for (i = incremento + 1; i < n; i++) {
+        for (i = incremento; i < n; i++) {
             tmp = v[i];
             j = i;
             seguir = true;
