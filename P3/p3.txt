@@ -244,5 +244,5 @@ Finalmente, al comparar ambos algoritmos, apreciamos que el algoritmo de inserci
 el algoritmo de quicksort consigue escasos tiempos en la inicializacion descendente ( siendo estos tiempos muy similares a los de la inicializacion ascendente) y en la 
 inicializacion aleatoria. Dichos resultados se reflejan en las cotas que obtuvimos en los mejores casos del quicksort y las cotas del algoritmo de insercion. 
 
-Por tanto, el algoritmo de quicksort es más eficaz para la ordenacion de vectores de n numeros.
+Por tanto ,el algoritmo de quicksort es más eficaz para la ordenacion de vectores de n numeros.
 
