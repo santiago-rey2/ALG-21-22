@@ -123,14 +123,8 @@ Inicializacion Ascendente
     256000     4823.000000     0.018840     0.004388     0.001561
     512000    10222.000000     0.019965     0.004288     0.001440
 
-*: tiempo promedio de k=1000 ejecuciones del algoritmo.
-Cota subestimada = n^1
-Cota ajustada = n^1.117 Constante: 0.0043 
-Cota sobrestimada = n^1.2
-Medición anomala indicada con 2000 elementos
-
 UMBRAL = 10
-
+    
 Inicializacion Descendente
      n          t(n)        t(n)/sub     t(n)/est    t(n)/sobre
 *   2000       34.137000     0.017069     0.006760     0.003732
@@ -182,6 +176,11 @@ Inicializacion Ascendente
 Cota subestimada = n^1
 Cota ajustada = n^1.1185 Constante: 0.0058 
 Cota sobrestimada = n^1.2
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^1
+Cota ajustada = n^1.117 Constante: 0.0043 
+Cota sobrestimada = n^1.2
+Medición anomala indicada con 2000 elementos
 
 UMBRAL = 1
 
@@ -235,3 +234,20 @@ Inicializacion Ascendente
 Cota subestimada = n^1
 Cota ajustada = n^1.08 Constante: 0.0027 
 Cota sobrestimada = n^1.2
+
+CONCLUSION:
+En el algortimo de insercion, observamos que el mejor caso aparece en vectores con inicializacion ascendente, mostrando tiempos muy pequeños. Mientras que, el peor caso se 
+corresponde con aquellos vectores que presentan una inicializacion descendente, pues llegan a duplicar incluso los valores obtenidos al ordenar vectores con inicializacion 
+aleatoria.
+
+Estudiando el algoritmo de quickSort en los diferentes umbrales hemos podido comprobar que los vectores con inicializacion descendente y ascendente son similares en cuanto a 
+tiempos, siendo estos los mejores casos y la inicializacion aleatoria, el peor. Cabe destacar que ,con un umbral = 100, encontramos los mejores tiempos en inicializaciones
+descendentes y ascendentes; mientras que, con un umbral = 10, encontramos los mejores tiempos en inicializacion aleatoria. Por tanto, llegamos a la conclusion de que el 
+umbral que presenta mejores tiempos de quicksort, es el umbral = 100.
+    
+Finalmente, al comparar ambos algoritmos, apreciamos que el algoritmo de insercion presenta mejores tiempos en cuanto a vectores con inicializacion ascendente. Aun asi, 
+el algoritmo de quicksort consigue escasos tiempos en la inicializacion descendente ( siendo estos tiempos muy similares a los de la inicializacion ascendente) y en la 
+inicializacion aleatoria. Dichos resultados se reflejan en las cotas que obtuvimos en los mejores casos del quicksort y las cotas del algoritmo de insercion. 
+
+Por tanto, el algoritmo de quicksort es más eficaz para la ordenacion de vectores de n numeros.
+
