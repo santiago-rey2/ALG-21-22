@@ -176,11 +176,6 @@ Inicializacion Ascendente
 Cota subestimada = n^1
 Cota ajustada = n^1.1185 Constante: 0.0058 
 Cota sobrestimada = n^1.2
-*: tiempo promedio de k=1000 ejecuciones del algoritmo.
-Cota subestimada = n^1
-Cota ajustada = n^1.117 Constante: 0.0043 
-Cota sobrestimada = n^1.2
-Medición anomala indicada con 2000 elementos
 
 UMBRAL = 1
 
