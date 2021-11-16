@@ -5,7 +5,7 @@
 #include <sys/time.h>
 #include <stdbool.h>
 
-#define UMBRAL 100
+#define UMBRAL 100 //no hay que poner el umbral a 1??
 #define intercambiar(x,y) {int aux=x; x=y; y=aux;} //Usamos una macro para instanciar la realización del cambio 
 
 //===============Ordenación Insercion===================
@@ -26,6 +26,7 @@ void OrdenacionInsercion(int * v,int n){
 //===============Ordenación Quick Sort===================
 
 //--------------- Mediana de 3 --------------------------
+
 void mediana3(int *v,int izq,int der){
     int k;
     k = (izq + der) / 2;
@@ -118,7 +119,6 @@ void listarvector(int v[], int n) {
     }
 }
 
-
 //=================== Comprobar Ornden Vector ===============
 
 /*
@@ -202,10 +202,12 @@ double microsegundos() { /* obtiene la hora del sistema en microsegundos */
         return 0.0;
     return (t.tv_usec + t.tv_sec * 1000000.0);
 }
+
 /*Esta función cotas recibe la funcion ordenar, la funcion inicializar y las variables
   de tamaño de vector, su funcionamiento es comparar si se esta utilizando un tipo de ordenacion
   con una inicialización concreta comparando los apuntadores a esas funciones y dependiendo de
   las funciones calculará las cotas de las funciones*/
+
 void cotas(void(*ordenar)(int*,int),void(*inicializar)(int*,int),int n,
     double* c1,double* c2,double* c3){
     if(ordenar == OrdenacionInsercion && inicializar == descendente){
@@ -270,6 +272,7 @@ void medirTiemposGeneral(void(*ordenar)(int*,int),void(*inicializar)(int*,int)){
 }
 
 void tiempos(){
+    
     printf("Tiempos Insercion\n");
     printf("\nInicializacion Descendente\n");
     medirTiemposGeneral(OrdenacionInsercion,descendente);
