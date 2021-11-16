@@ -67,7 +67,7 @@ Cota subestimada = n^0.9
 Cota ajustada = n^1. Constante: 0.0033 
 Cota sobrestimada = n^1.1
 
-(empezamos en 16000 elementos y acabamos en +4mill porque con menos elementos los timepos eran demasiado pequeños y nos encontramos demasiadas anomalias)
+(empezamos en 16000 elementos y acabamos en +4mill porque con menos elementos los tiempos eran demasiado pequeños y nos encontramos demasiadas anomalias)
 
 Tiempos QuickSort
 
@@ -113,7 +113,7 @@ Cota sobrestimada = n^1.15
 Inicializacion Ascendente
        n           t(n)        t(n)/sub     t(n)/est    t(n)/sobre
 
--> *  2000       19.605000     0.009803     0.004028     0.002144
+-> *  2000       19.605000     0.009803     0.004028     0.002144 //por que esta la flecha aqui?
    *  4000       45.924000     0.011481     0.004350     0.002186
    *  8000       99.781000     0.012473     0.004358     0.002067
    * 16000      218.503000     0.013656     0.004400     0.001970
@@ -122,6 +122,11 @@ Inicializacion Ascendente
     128000     2134.000000     0.016672     0.004212     0.001587
     256000     4823.000000     0.018840     0.004388     0.001561
     512000    10222.000000     0.019965     0.004288     0.001440
+//falta la descripcion de la tabla
+*: tiempo promedio de k=1000 ejecuciones del algoritmo.
+Cota subestimada = n^
+Cota ajustada = n^ Constante: 
+Cota sobrestimada = n^
 
 UMBRAL = 10
     
@@ -133,7 +138,7 @@ Inicializacion Descendente
 *  16000      313.064000     0.019567     0.006014     0.002823
    32000      642.000000     0.020063     0.005667     0.002520
    64000     1394.000000     0.021781     0.005655     0.002381
-->128000     2925.000000     0.022852     0.005452     0.002175
+->128000     2925.000000     0.022852     0.005452     0.002175 //por que es una anomalia?
   256000     7297.000000     0.028504     0.006250     0.002362
   512000    15773.000000     0.030807     0.006207     0.002222
 
@@ -246,3 +251,4 @@ inicializacion aleatoria. Dichos resultados se reflejan en las cotas que obtuvim
 
 Por tanto ,el algoritmo de quicksort es más eficaz para la ordenacion de vectores de n numeros.
 
+//no deberiamos agregar lo de las complejidades empiricas y teoricas si se alejan o se acercan o asi 
