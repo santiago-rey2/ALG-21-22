@@ -67,6 +67,7 @@ Cota sobrestimada = n^1.1
 
 (empezamos en 16000 elementos y acabamos en +4mill porque con menos elementos los tiempos eran demasiado pequeños y nos encontramos demasiadas anomalias)
 
+
 Tiempos QuickSort
 
 Para la obtención empírica de las cotas de este algoritmo obtuvimos numeros ligeramente diferentes para cada uno de los umbrales.
@@ -234,31 +235,28 @@ Cota ajustada = n^1.08 Constante: 0.0027
 Cota sobrestimada = n^1.2
 
 CONCLUSION:
-En el algortimo de insercion, observamos que el mejor caso aparece en vectores con inicializacion ascendente, mostrando tiempos muy pequeños. Mientras que, el peor caso se 
+
+En el algoritmo de insercion, observamos que el mejor caso aparece en vectores con inicializacion ascendente, mostrando tiempos muy pequeños. Mientras que, el peor caso se 
 corresponde con aquellos vectores que presentan una inicializacion descendente, pues llegan a duplicar incluso los valores obtenidos al ordenar vectores con inicializacion 
 aleatoria.
 
 Para el algoritmo de ordenacion rapida podemos ver como con umbral 1 las cotas se ajustan a la teorica (n*log(n)) mientras que 
 para el resto de umbrales las cotas teoricas son desconocidas por lo tanto no podemos concluir si se ajustan o no.
 
-Estudiando el algoritmo de quickSort en los diferentes umbrales hemos podido comprobar que los vectores con inicializacion descendente y ascendente son similares en cuanto a 
-tiempos, siendo estos los mejores casos y la inicializacion aleatoria, el peor. Cabe destacar que ,con un umbral = 100, encontramos los mejores tiempos en inicializaciones
+Estudiando el algoritmo de Quicksort en los diferentes umbrales hemos podido comprobar que los vectores con inicializacion descendente y ascendente son similares en cuanto a 
+tiempos, siendo estos los mejores casos y obteniendo como peor caso la inicializacion aleatoria. Cabe destacar que con un umbral = 100, encontramos los mejores tiempos en inicializaciones
 descendentes y ascendentes; mientras que, con inicializacion aleatoria los tiempos con umbral 10 y 100 son muy parejos distanciandose de umbral 1 el cual tiene tiempos mayores.
 Por tanto, llegamos a la conclusion de que el umbral que presenta mejores tiempos de quicksort, es el umbral = 100.
     
 Finalmente, al comparar ambos algoritmos, apreciamos que el algoritmo de insercion presenta mejores tiempos en cuanto a vectores con inicializacion ascendente ya que 
-tiene una complijidad lineal. Aun asi, el algoritmo de quicksort consigue escasos tiempos en la inicializacion descendente y ascendente puesto que estos son los mejores 
-casos para el algoritmo siguiendo una complejidad nlog(n) en ambos casos,en la inicializacion aleatoria los tiempos soy mucho mejores que con insercion pues sigue tambien 
-una complejidad nlog(n) aunque estos sean superiores(aproximadamente 3 veces lso obtenidos en ascendente y descendente). Dichos resultados se reflejan en las cotas que obtenidas en 
-los mejores casos del quicksort y las cotas del algoritmo de insercion.
+tiene una complejidad lineal. Sin embargo, el algoritmo de quicksort consigue escasos tiempos en la inicializacion descendente y ascendente debido a que sigue una complejidad nlog(n) en ambos casos, en la inicializacion aleatoria los tiempos son mucho mejores que con insercion pues sigue tambien 
+una complejidad nlog(n). Dichos resultados se reflejan en las cotas obtenidas en 
+los mejores casos del Quicksort y del algoritmo de insercion.
 
-Por tanto ,el algoritmo de quicksort es más eficaz para la ordenacion de vectores de n numeros a excepcion de vectores ascendentes donde gana sustancialmente insercion.
+Por tanto, el algoritmo de Quicksort es más eficaz para la ordenacion de vectores de n numeros a excepcion de vectores ascendentes donde gana sustancialmente insercion.
 
 Contestando a las preguntas propuestas en la practica concluimos:
 
-En el algoritmo de QuickSort tenemos que los mejores tiempos se obtienen con umbral 100, esto se debe a que en la ultima parte de este algoritmo se utiliza insercion
-algoritmo que obtiene tiempos muy bajos para vectores ordenados o casi ordenados siendo infima la diferencia de tiempos en este tamaño de vector con inferiores.Para el caso
-de umbral 1 insercion no se llega a ejecutar por lo tanto los tiempos son superiores ya que solo utilizmos quicksort que tiene complejidad nlog(n).
-
-
- 
+En el algoritmo de Quicksort tenemos que los mejores tiempos se obtienen con umbral 100, esto se debe a que en la ultima parte de este algoritmo se utiliza insercion,
+el cual obtiene tiempos muy bajos para vectores ordenados o casi ordenados siendo infima la diferencia de tiempos en este tamaño de vector o de tamaños inferiores. Para el caso
+de umbral 1 insercion no se llega a ejecutar por lo tanto los tiempos son superiores ya que solo utilizamos quicksort que tiene complejidad nlog(n).
