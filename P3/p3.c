@@ -5,7 +5,7 @@
 #include <sys/time.h>
 #include <stdbool.h>
 
-#define UMBRAL 100 //no hay que poner el umbral a 1??
+#define UMBRAL 1
 #define intercambiar(x,y) {int aux=x; x=y; y=aux;} //Usamos una macro para instanciar la realización del cambio 
 
 //===============Ordenación Insercion===================

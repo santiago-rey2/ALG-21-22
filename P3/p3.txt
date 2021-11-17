@@ -14,12 +14,12 @@ El ordenador con el que hemos realizado las mediciones tiene las siguientes cara
 -Memoria RAM: 32 GiB.
 
 La unidad de tiempo que estamos utilizando son microsegundos; los vectores siguen una progresion geometrica de razon dos.
+Las mediciones anomalas estan indicadas con el simbolo " -> ".
 
 Tiempos Insercion
 
 Inicializacion Descendente
     n           t(n)        t(n)/sub    t(n)/est      t(n)/sobre
-
    1000      875.000000     0.001746     0.000875     0.000439
    2000     3462.000000     0.001851     0.000865     0.000405
    4000    14281.000000     0.002046     0.000893     0.000389
@@ -35,7 +35,6 @@ Cota sobrestimada = n^2.1
 
 Inicializacion Aleatorio
     n           t(n)        t(n)/sub    t(n)/est      t(n)/sobre
-
 *  1000      439.077000     0.000876     0.000439     0.000220
    2000     1730.000000     0.000925     0.000432     0.000202
    4000     6819.000000     0.000977     0.000426     0.000186
@@ -51,7 +50,6 @@ Cota sobrestimada = n^2.1
 
 Inicializacion Ascendente
     n            t(n)        t(n)/sub     t(n)/est     t(n)/sobre
-
 *  16000       51.586000     0.008488     0.003224     0.001225
 *  32000      108.265000     0.009547     0.003383     0.001199
 *  64000      219.585000     0.010376     0.003431     0.001135
@@ -71,11 +69,12 @@ Cota sobrestimada = n^1.1
 
 Tiempos QuickSort
 
+Para la obtención empírica de las cotas de este algoritmo obtuvimos numeros ligeramente diferentes para cada uno de los umbrales.
+
 UMBRAL = 100
 
 Inicializacion Descendente
       n           t(n)        t(n)/sub     t(n)/est    t(n)/sobre
-
   *  2000       21.460000     0.010730     0.004310     0.002346
   *  4000       47.543000     0.011886     0.004393     0.002263
   *  8000      109.838000     0.013730     0.004670     0.002275
@@ -94,7 +93,6 @@ Medición anomala indicada con 256000 elementos
 
 Inicializacion Aleatorio
     n           t(n)        t(n)/sub     t(n)/est    t(n)/sobre
-
 *  2000      125.773000     0.062886     0.029185     0.020110
 *  4000      271.885000     0.067971     0.029412     0.019589
    8000      594.000000     0.074250     0.029956     0.019286
@@ -112,8 +110,7 @@ Cota sobrestimada = n^1.15
 
 Inicializacion Ascendente
        n           t(n)        t(n)/sub     t(n)/est    t(n)/sobre
-
--> *  2000       19.605000     0.009803     0.004028     0.002144 //por que esta la flecha aqui?
+-> *  2000       19.605000     0.009803     0.004028     0.002144 
    *  4000       45.924000     0.011481     0.004350     0.002186
    *  8000       99.781000     0.012473     0.004358     0.002067
    * 16000      218.503000     0.013656     0.004400     0.001970
@@ -122,11 +119,12 @@ Inicializacion Ascendente
     128000     2134.000000     0.016672     0.004212     0.001587
     256000     4823.000000     0.018840     0.004388     0.001561
     512000    10222.000000     0.019965     0.004288     0.001440
-//falta la descripcion de la tabla
+
 *: tiempo promedio de k=1000 ejecuciones del algoritmo.
-Cota subestimada = n^
-Cota ajustada = n^ Constante: 
-Cota sobrestimada = n^
+Cota subestimada = n^1
+Cota ajustada = n^1.117 Constante: 0.0043
+Cota sobrestimada = n^1.2
+Medición anomala indicada en 2000 elementos
 
 UMBRAL = 10
     
@@ -138,7 +136,7 @@ Inicializacion Descendente
 *  16000      313.064000     0.019567     0.006014     0.002823
    32000      642.000000     0.020063     0.005667     0.002520
    64000     1394.000000     0.021781     0.005655     0.002381
-->128000     2925.000000     0.022852     0.005452     0.002175 //por que es una anomalia?
+->128000     2925.000000     0.022852     0.005452     0.002175
   256000     7297.000000     0.028504     0.006250     0.002362
   512000    15773.000000     0.030807     0.006207     0.002222
 
@@ -240,15 +238,27 @@ En el algortimo de insercion, observamos que el mejor caso aparece en vectores c
 corresponde con aquellos vectores que presentan una inicializacion descendente, pues llegan a duplicar incluso los valores obtenidos al ordenar vectores con inicializacion 
 aleatoria.
 
+Para el algoritmo de ordenacion rapida podemos ver como con umbral 1 las cotas se ajustan a la teorica (n*log(n)) mientras que 
+para el resto de umbrales las cotas teoricas son desconocidas por lo tanto no podemos concluir si se ajustan o no.
+
 Estudiando el algoritmo de quickSort en los diferentes umbrales hemos podido comprobar que los vectores con inicializacion descendente y ascendente son similares en cuanto a 
 tiempos, siendo estos los mejores casos y la inicializacion aleatoria, el peor. Cabe destacar que ,con un umbral = 100, encontramos los mejores tiempos en inicializaciones
-descendentes y ascendentes; mientras que, con un umbral = 10, encontramos los mejores tiempos en inicializacion aleatoria. Por tanto, llegamos a la conclusion de que el 
-umbral que presenta mejores tiempos de quicksort, es el umbral = 100.
+descendentes y ascendentes; mientras que, con inicializacion aleatoria los tiempos con umbral 10 y 100 son muy parejos distanciandose de umbral 1 el cual tiene tiempos mayores.
+Por tanto, llegamos a la conclusion de que el umbral que presenta mejores tiempos de quicksort, es el umbral = 100.
     
-Finalmente, al comparar ambos algoritmos, apreciamos que el algoritmo de insercion presenta mejores tiempos en cuanto a vectores con inicializacion ascendente. Aun asi, 
-el algoritmo de quicksort consigue escasos tiempos en la inicializacion descendente ( siendo estos tiempos muy similares a los de la inicializacion ascendente) y en la 
-inicializacion aleatoria. Dichos resultados se reflejan en las cotas que obtuvimos en los mejores casos del quicksort y las cotas del algoritmo de insercion. 
+Finalmente, al comparar ambos algoritmos, apreciamos que el algoritmo de insercion presenta mejores tiempos en cuanto a vectores con inicializacion ascendente ya que 
+tiene una complijidad lineal. Aun asi, el algoritmo de quicksort consigue escasos tiempos en la inicializacion descendente y ascendente puesto que estos son los mejores 
+casos para el algoritmo siguiendo una complejidad nlog(n) en ambos casos,en la inicializacion aleatoria los tiempos soy mucho mejores que con insercion pues sigue tambien 
+una complejidad nlog(n) aunque estos sean superiores(aproximadamente 3 veces lso obtenidos en ascendente y descendente). Dichos resultados se reflejan en las cotas que obtenidas en 
+los mejores casos del quicksort y las cotas del algoritmo de insercion.
 
-Por tanto ,el algoritmo de quicksort es más eficaz para la ordenacion de vectores de n numeros.
+Por tanto ,el algoritmo de quicksort es más eficaz para la ordenacion de vectores de n numeros a excepcion de vectores ascendentes donde gana sustancialmente insercion.
 
-//no deberiamos agregar lo de las complejidades empiricas y teoricas si se alejan o se acercan o asi 
+Contestando a las preguntas propuestas en la practica concluimos:
+
+En el algoritmo de QuickSort tenemos que los mejores tiempos se obtienen con umbral 100, esto se debe a que en la ultima parte de este algoritmo se utiliza insercion
+algoritmo que obtiene tiempos muy bajos para vectores ordenados o casi ordenados siendo infima la diferencia de tiempos en este tamaño de vector con inferiores.Para el caso
+de umbral 1 insercion no se llega a ejecutar por lo tanto los tiempos son superiores ya que solo utilizmos quicksort que tiene complejidad nlog(n).
+
+
+ 
