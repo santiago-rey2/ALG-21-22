@@ -6,65 +6,65 @@
 #include <stdbool.h>
 
 #define UMBRAL 1
-#define intercambiar(x,y) {int aux=x; x=y; y=aux;} //Usamos una macro para instanciar la realización del cambio 
+#define intercambiar(x, y) {int aux=x; x=y; y=aux;} //Usamos una macro para instanciar la realización del cambio 
 
 //===============Ordenación Insercion===================
 
-void OrdenacionInsercion(int * v,int n){
-    int i,x,j;
+void OrdenacionInsercion(int *v, int n) {
+    int i, x, j;
 
-    for(i = 1 ; i < n ; i++){
-        x= v[i];
-        j = i-1;
-        while(j >= 0 && v[j] > x){
-            v[j+1]=v[j];
-            j=j-1;
+    for (i = 1; i < n; i++) {
+        x = v[i];
+        j = i - 1;
+        while (j >= 0 && v[j] > x) {
+            v[j + 1] = v[j];
+            j = j - 1;
         }
-        v[j+1] = x;
+        v[j + 1] = x;
     }
 }
 //===============Ordenación Quick Sort===================
 
 //--------------- Mediana de 3 --------------------------
 
-void mediana3(int *v,int izq,int der){
+void mediana3(int *v, int izq, int der) {
     int k;
     k = (izq + der) / 2;
-    if(v[k]>v[der]) intercambiar(v[k],v[der]);
-    if(v[k]>v[izq]) intercambiar(v[k],v[izq]);
-    if(v[izq]>v[der]) intercambiar(v[izq],v[der]);
-    
+    if (v[k] > v[der]) intercambiar(v[k], v[der]);
+    if (v[k] > v[izq]) intercambiar(v[k], v[izq]);
+    if (v[izq] > v[der]) intercambiar(v[izq], v[der]);
+
 }
 
 //----------------- Aux de Quick Sort -------------------
 
-void OrdenarAux(int *v,int izq,int der){
-    int pivote,i,j;
-    if(izq+UMBRAL<= der){
-        mediana3(v,izq,der);
+void OrdenarAux(int *v, int izq, int der) {
+    int pivote, i, j;
+    if (izq + UMBRAL <= der) {
+        mediana3(v, izq, der);
         pivote = v[izq];
         i = izq;
         j = der;
-        do{
-            do{i++;}while(v[i]< pivote);
-            do{j--;}while(v[j]> pivote);
-            intercambiar(v[i],v[j]);
-            
-        }while(j > i);
-        
-        intercambiar(v[i],v[j]);
-        intercambiar(v[izq],v[j]);
-        OrdenarAux(v,izq,j-1);
-        OrdenarAux(v,j+1,der);
+        do {
+            do { i++; } while (v[i] < pivote);
+            do { j--; } while (v[j] > pivote);
+            intercambiar(v[i], v[j]);
+
+        } while (j > i);
+
+        intercambiar(v[i], v[j]);
+        intercambiar(v[izq], v[j]);
+        OrdenarAux(v, izq, j - 1);
+        OrdenarAux(v, j + 1, der);
     }
 }
 
 //------------- Función Quick Sort ----------------------
 
-void OrdenacionQuickSort(int *v,int n){
-    OrdenarAux(v,0,n-1);
-    if(UMBRAL > 1){
-        OrdenacionInsercion(v,n);
+void OrdenacionQuickSort(int *v, int n) {
+    OrdenarAux(v, 0, n - 1);
+    if (UMBRAL > 1) {
+        OrdenacionInsercion(v, n);
     }
 }
 
@@ -144,9 +144,9 @@ int comprobarOrden(int v[], int n) {
 //============= Test Inserción ==================
 
 void testInsercion() {
-    int n = 10,*v;
-    
-    v = malloc(n*sizeof(int));
+    int n = 10, *v;
+
+    v = malloc(n * sizeof(int));
 
     printf("\n Inicializacion Descendente \n");
     descendente(v, n);
@@ -169,9 +169,9 @@ void testInsercion() {
 //============= Test Quick Sort =================
 
 void testQuickSort() {
-    int n = 10,*v;
-    
-    v = malloc(n*sizeof(int));
+    int n = 10, *v;
+
+    v = malloc(n * sizeof(int));
 
     printf("\n Inicializacion Descendente \n");
     descendente(v, n);
@@ -208,25 +208,37 @@ double microsegundos() { /* obtiene la hora del sistema en microsegundos */
   con una inicialización concreta comparando los apuntadores a esas funciones y dependiendo de
   las funciones calculará las cotas de las funciones*/
 
-void cotas(void(*ordenar)(int*,int),void(*inicializar)(int*,int),int n,
-    double* c1,double* c2,double* c3){
-    if(ordenar == OrdenacionInsercion && inicializar == descendente){
-        *c1 = pow(n, 1.9);*c2 = pow(n, 2);*c3 = pow(n, 2.1);
+void cotas(void(*ordenar)(int *, int), void(*inicializar)(int *, int), int n,
+           double *c1, double *c2, double *c3) {
+    if (ordenar == OrdenacionInsercion && inicializar == descendente) {
+        *c1 = pow(n, 1.9);
+        *c2 = pow(n, 2);
+        *c3 = pow(n, 2.1);
     }
-    if(ordenar == OrdenacionInsercion && inicializar == aleatorio){
-        *c1 = pow(n, 1.9);*c2 = pow(n, 2);*c3 = pow(n, 2.1);
+    if (ordenar == OrdenacionInsercion && inicializar == aleatorio) {
+        *c1 = pow(n, 1.9);
+        *c2 = pow(n, 2);
+        *c3 = pow(n, 2.1);
     }
-    if(ordenar == OrdenacionInsercion && inicializar == ascendente){
-        *c1 = pow(n, 0.9);*c2 = pow(n, 1);*c3 = pow(n, 1.1);
+    if (ordenar == OrdenacionInsercion && inicializar == ascendente) {
+        *c1 = pow(n, 0.9);
+        *c2 = pow(n, 1);
+        *c3 = pow(n, 1.1);
     }
-    if(ordenar == OrdenacionQuickSort && inicializar == descendente){
-        *c1 = pow(n, 1);*c2 = pow(n, 1.12);*c3 = pow(n, 1.2);
+    if (ordenar == OrdenacionQuickSort && inicializar == descendente) {
+        *c1 = pow(n, 1);
+        *c2 = pow(n, 1.12);
+        *c3 = pow(n, 1.2);
     }
-    if(ordenar == OrdenacionQuickSort && inicializar == aleatorio){
-        *c1 = pow(n, 1);*c2 = pow(n, 1.101);*c3 = pow(n, 1.15);
+    if (ordenar == OrdenacionQuickSort && inicializar == aleatorio) {
+        *c1 = pow(n, 1);
+        *c2 = pow(n, 1.101);
+        *c3 = pow(n, 1.15);
     }
-    if(ordenar == OrdenacionQuickSort && inicializar == ascendente){
-        *c1 = pow(n, 1);*c2 = pow(n, 1.117);*c3 = pow(n, 1.2);
+    if (ordenar == OrdenacionQuickSort && inicializar == ascendente) {
+        *c1 = pow(n, 1);
+        *c2 = pow(n, 1.117);
+        *c3 = pow(n, 1.2);
     }
 }
 
@@ -235,12 +247,14 @@ void cotas(void(*ordenar)(int*,int),void(*inicializar)(int*,int),int n,
  un maximo de 512000 elementos
 */
 
-void medirTiemposGeneral(void(*ordenar)(int*,int),void(*inicializar)(int*,int)){
-    int n=2000,k = 1000, i; int*v;
-    double ta, tb, t, c1 = 0, c2 = 0 , c3 = 0;
+void medirTiemposGeneral(void(*ordenar)(int *, int), 
+                         void(*inicializar)(int *, int)) {
+    int n = 2000, k = 1000, i;
+    int *v;
+    double ta, tb, t, c1 = 0, c2 = 0, c3 = 0;
     printf("    n          t(n)        t(n)/sub     t(n)/est    t(n)/sobre\n");
     while (n <= 512000) {
-        v = malloc(n*sizeof(int)); 
+        v = malloc(n * sizeof(int));
         inicializar(v, n);
         ta = microsegundos();
         ordenar(v, n);
@@ -264,38 +278,38 @@ void medirTiemposGeneral(void(*ordenar)(int*,int),void(*inicializar)(int*,int)){
         } else {
             printf(" ");
         }
-        cotas(ordenar,inicializar,n,&c1,&c2,&c3);
-        printf("%6d %15f  %11f  %11f  %11f\n", n, t, t/c1, t/c2, t/c3);
+        cotas(ordenar, inicializar, n, &c1, &c2, &c3);
+        printf("%6d %15f  %11f  %11f  %11f\n", n, t, t / c1, t / c2, t / c3);
         n = n * 2;
         free(v);
     }
 }
 
-void tiempos(){
-    
+void tiempos() {
+
     printf("Tiempos Insercion\n");
     printf("\nInicializacion Descendente\n");
-    medirTiemposGeneral(OrdenacionInsercion,descendente);
-     printf("\nInicializacion Aleatorio\n");
-     medirTiemposGeneral(OrdenacionInsercion,aleatorio);
-     printf("\nInicializacion Ascendente\n");
-     medirTiemposGeneral(OrdenacionInsercion,ascendente);
-     printf("\nTiempos QuickSort\n");
-     printf("\nInicializacion Descendente\n");
-     medirTiemposGeneral(OrdenacionQuickSort,descendente);
-     printf("\nInicializacion Aleatorio\n");
-     medirTiemposGeneral(OrdenacionQuickSort,aleatorio);
-     printf("\nInicializacion Ascendente\n");
-     medirTiemposGeneral(OrdenacionQuickSort,ascendente);
+    medirTiemposGeneral(OrdenacionInsercion, descendente);
+    printf("\nInicializacion Aleatorio\n");
+    medirTiemposGeneral(OrdenacionInsercion, aleatorio);
+    printf("\nInicializacion Ascendente\n");
+    medirTiemposGeneral(OrdenacionInsercion, ascendente);
+    printf("\nTiempos QuickSort\n");
+    printf("\nInicializacion Descendente\n");
+    medirTiemposGeneral(OrdenacionQuickSort, descendente);
+    printf("\nInicializacion Aleatorio\n");
+    medirTiemposGeneral(OrdenacionQuickSort, aleatorio);
+    printf("\nInicializacion Ascendente\n");
+    medirTiemposGeneral(OrdenacionQuickSort, ascendente);
 }
 
-int main(){
+int main() {
     int i = 0;
     inicializar_semilla();
     testInsercion();
     testQuickSort();
-     while(i < 4){
-         tiempos();
-         i++;
-     } 
+    while (i < 4) {
+        tiempos();
+        i++;
+    }
 }
