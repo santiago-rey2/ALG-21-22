@@ -74,6 +74,7 @@ void mostrar_cola(cola c){
         aux2 = c.vector[aux];
         printf("(%d,%d),",aux2.x,aux2.y);
         pesot += aux2.peso; 
+        aux++;
     }
     printf("\n Peso: %d \n",pesot);
 }
@@ -143,7 +144,7 @@ las aristas del arbol en la cola ’aristas’ */
                 masProximo[j]= k;
             }
         }
-        
+        i++;
     }while(i < nodos-1);
     free(masProximo);
     free(distanciaMinima);
@@ -159,13 +160,14 @@ void showMatriz (matriz m, int n) {
         }
 }
 
+
 void test1 (){
     cola c;
-    
     matriz figura2 = crear_matriz(5);
     inicializar_matriz(figura2, 5);
     showMatriz(figura2, 5);
-    //prim(figura2,5,&c);
+    prim(figura2,5,&c);
+    mostrar_cola(c);
 
 }
 
