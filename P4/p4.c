@@ -85,7 +85,7 @@ void mostrar_cola(cola c){
         pesot += aux2.peso; 
         aux++;
     }
-    printf("\n Peso: %d \n",pesot);
+    printf("\nPeso: %d \n",pesot);
 }
 
 matriz crear_matriz(int n){
@@ -129,28 +129,23 @@ las aristas del arbol en la cola ’aristas’ */
     int *distanciaMinima = (int *)malloc(nodos * sizeof(int));
     crear_cola(aristas);
     distanciaMinima[0] = -1;
-    for (i = 1; i < nodos; i++)
-    {
+    for (i = 1; i < nodos; i++){
         masProximo[i] = 0;
         distanciaMinima[i] = m[i][0];
     }
     i=0;
     do{
         min = INFINITO;
-        for ( j = 1; j < nodos; j++) // j era igual a 2
-        {
+        for ( j = 1; j < nodos; j++){
             if(0 <= distanciaMinima[j] && distanciaMinima[j] < min){
                 min = distanciaMinima[j];
                 k = j;
             }
         }
-        a.x = masProximo[k];
-        a.y = k;
-        a.peso = min;
+        a.x = masProximo[k];a.y = k;a.peso = min;
         insertar(a,aristas);
         distanciaMinima[k] = -1;
-        for ( j = 1; j < nodos; j++) // j era igual a 2
-        {
+        for ( j = 1; j < nodos; j++){
             if(m[j][k] < distanciaMinima[j]){
                 distanciaMinima[j]= m[j][k];
                 masProximo[j]= k;
@@ -161,12 +156,13 @@ las aristas del arbol en la cola ’aristas’ */
     free(masProximo);
     free(distanciaMinima);
 }
+
 void showMatriz (matriz m, int n) {
     int i, j;
     
     for(i = 0; i < n; i++) 
         for(j = 0; j < n; j++) {
-            printf("%d  ",m[i][j]);
+            printf("%2d  ",m[i][j]);
             if(j == n-1) 
                 printf("\n");
         }
@@ -193,37 +189,55 @@ void inicializar_matriz_test(matriz m, int n,int *ve,int l){
 void test1 (){
     cola c;
     matriz figura2 = crear_matriz(5);
-    //inicializar_matriz(figura2, 5);
-    ini_m(figura2,5);
+    inicializar_matriz(figura2, 5);
     showMatriz(figura2, 5);
     prim(figura2,5,&c);
     mostrar_cola(c);
 }
 
+void vectores(int n,int *l,int * v){
+    if(n==0){
+        v[0]=1;v[1]=8;v[2]=4;v[3]=7;v[4]=2;
+        v[5]=6;v[6]=5;v[7]=9;v[8]=5;v[9]=3;
+        *l = 9;
+    }
+    if(n==1){
+        v[0]=1;v[1]=4;v[2]=7;v[3]=2;v[4]=8;v[5]=3;
+        *l = 5;
+    }
+    if(n==2){
+        v[0]=7;v[1]=99;v[2]=5;v[3]=99;v[4]=99;
+        v[5]=99;v[6]=8;v[7]=9;v[8]=7;v[9]=99;
+        v[10]=99;v[11]=99;v[12]=5;v[13]=99;v[14]=99;
+        v[15]=15;v[16]=6;v[17]=99;v[18]=8;v[19]=9;
+        v[20]=11;
+        *l = 20;
+    }
+}
+
 void test2(){
     cola c;
-    matriz m;
-    m = crear_matriz(5);
-    int v[10];
-    v[0]=1;
-    v[1]=8;
-    v[2]=4;
-    v[3]=7;
-    v[4]=2;
-    v[5]=6;
-    v[6]=5;
-    v[7]=9;
-    v[8]=5;
-    v[9]=3;  
-    inicializar_matriz_test(m,5,v,9);
-    showMatriz(m, 5);
-    prim(m,5,&c);
-    mostrar_cola(c);
-
+    matriz m;  
+    int * v,l=0,i,n;
+    v = malloc(21 * sizeof(int));
+    for ( i = 0; i < 3; i++)
+    {
+        if(i == 0){ m = crear_matriz(5);n=5;}    
+        if(i == 1){ m = crear_matriz(4);n=4;}     
+        if(i == 2){ m = crear_matriz(7);n=7;}
+            
+        vectores(i,&l,v);
+        inicializar_matriz_test(m,n,v,l); 
+        showMatriz(m,n);
+        prim(m,n,&c);
+        mostrar_cola(c);
+    }
+    free(v);    
 }
 
 int main(){
 
     inicializar_semilla();
-    test2();   
+    test2();
+    test1();   
 }
