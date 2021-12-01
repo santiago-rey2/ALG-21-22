@@ -19,18 +19,16 @@ typedef struct{
 void crear_cola(cola * c){
     c->tamano = 0;
     c->cabeza = 0;
-    c->final = TAM_MAX;
+    c->final = -1; //Antes ponia c->final = TAM_MAX
 }
 
 int cola_vacia(cola c){
-    return c.tamano = 0;
+    return c.tamano == 0;
 }
 
 void incrementar(int *x){
-    if(x == TAM_MAX){
-        x = 1;
-    }else{
-        x +=1;
+    if(++(*x) == TAM_MAX){ //Elimine el Else porque asi se incrementa, lo comprueba y siendo verdadero o falso ya queda incrementado
+        *x = 0; // Creo que es cero. Cuando llega al final de la cola, vuelve a la PRIMERA posicion
     }
 }
 
@@ -39,7 +37,7 @@ void insertar(tipo_elemento v, cola * c){
         printf("Error: cola llena\n");
     }else{
         c->tamano += 1;
-        incrementar(c->final);
+        incrementar(&(c->final));
         c->vector[c->final] = v;
     }
 }
@@ -49,10 +47,11 @@ tipo_elemento quitar_primero(cola *c){
 
     if(cola_vacia(*c)){
         printf("Error: cola vacia");
+        exit(EXIT_FAILURE);
     }else{
         c->tamano = c->tamano-1;
         x = c->vector[c->cabeza];
-        incrementar(c->cabeza);
+        incrementar(&(c->cabeza));
         return x;
     }
 }
@@ -60,6 +59,7 @@ tipo_elemento quitar_primero(cola *c){
 tipo_elemento primero(cola c){
     if(cola_vacia(c)){
         printf("Error: Cola vacia");
+        exit(EXIT_FAILURE);
     }else{
         return c.vector[c.cabeza];
     }
@@ -81,6 +81,7 @@ void mostrar_cola(cola c){
 matriz crear_matriz(int n){
     int i;
     matriz aux;
+    
     if ((aux = malloc(n * sizeof(int *))) == NULL)
         return NULL;
     for (i = 0; i < n; i++)
@@ -114,7 +115,7 @@ void prim(matriz m, int nodos, cola *aristas){
 las aristas del arbol en la cola ’aristas’ */
     int min, i, j, k = 0;
     arista a;
-    int *masProximo = (int *)malloc(nodos * sizeof(int));
+    int *masProximo = (int *) malloc(nodos * sizeof(int));
     int *distanciaMinima = (int *)malloc(nodos * sizeof(int));
     crear_cola(aristas);
     distanciaMinima[0] = -1;
@@ -125,19 +126,20 @@ las aristas del arbol en la cola ’aristas’ */
     }
     i=0;
     do{
-        for ( j = 2; j < nodos; j++)
+        min = 25000;
+        for ( j = 1; j < nodos; j++) // j era igual a 2
         {
-            if((0 <= distanciaMinima[j]) && (distanciaMinima[j]< min)){
+            if(0 <= distanciaMinima[j] && distanciaMinima[j] < min){
                 min = distanciaMinima[j];
                 k = j;
             }
         }
         insertar(a,aristas);
         distanciaMinima[k] = -1;
-        for ( j = 2; j < nodos; j++)
+        for ( j = 1; j < nodos; j++) // j era igual a 2
         {
-            if(m[j,k] < distanciaMinima[j]){
-                distanciaMinima[j]= m[j,k];
+            if(m[j][k] < distanciaMinima[j]){
+                distanciaMinima[j]= m[j][k];
                 masProximo[j]= k;
             }
         }
@@ -146,7 +148,28 @@ las aristas del arbol en la cola ’aristas’ */
     free(masProximo);
     free(distanciaMinima);
 }
+void showMatriz (matriz m, int n) {
+    int i, j;
+    
+    for(i = 0; i < n; i++) 
+        for(j = 0; j < n; j++) {
+            printf("%d  ",m[i][j]);
+            if(j == n-1) 
+                printf("\n");
+        }
+}
+
+void test1 (){
+    cola c;
+    
+    matriz figura2 = crear_matriz(5);
+    inicializar_matriz(figura2, 5);
+    showMatriz(figura2, 5);
+    //prim(figura2,5,&c);
+
+}
 
 int main(){
-
+        test1();
+        
 }
