@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <limits.h>
 
 #define TAM_MAX 1600
+#define INFINITO INT_MAX
 
 typedef int **matriz;
 
@@ -15,6 +18,12 @@ typedef struct{
     int cabeza, final, tamano;
     tipo_elemento vector[TAM_MAX];
 } cola;
+
+void inicializar_semilla() {
+    srand(time(NULL));
+/* se establece la semilla de una nueva serie de enteros pseudo-aleatorios */
+}
+
 
 void crear_cola(cola * c){
     c->tamano = 0;
@@ -127,7 +136,7 @@ las aristas del arbol en la cola ’aristas’ */
     }
     i=0;
     do{
-        min = 25000;
+        min = INFINITO;
         for ( j = 1; j < nodos; j++) // j era igual a 2
         {
             if(0 <= distanciaMinima[j] && distanciaMinima[j] < min){
@@ -135,6 +144,9 @@ las aristas del arbol en la cola ’aristas’ */
                 k = j;
             }
         }
+        a.x = masProximo[k];
+        a.y = k;
+        a.peso = min;
         insertar(a,aristas);
         distanciaMinima[k] = -1;
         for ( j = 1; j < nodos; j++) // j era igual a 2
@@ -160,18 +172,93 @@ void showMatriz (matriz m, int n) {
         }
 }
 
+void inicializar_matriz_test(matriz m, int n,int *ve,int l){
+    /* Crea un grafo completo no dirigido con valores aleatorios entre 1 y n */
+    int i, j,k=0;
+    for (i = 0; i < n; i++)
+        for (j = i + 1; j < n; j++)
+            if(k <= l){
+                m[i][j] = ve[k];
+                k++;
+            }
+                        
+    for (i = 0; i < n; i++)
+        for (j = 0; j <= i; j++)
+            if (i == j)
+                m[i][j] = 0;
+            else
+                m[i][j] = m[j][i];
+}
+
+void ini_m(matriz m,int n){
+        /* Crea un grafo completo no dirigido con valores aleatorios entre 1 y n */
+    int i, j;
+    m[0][1] = 1;
+    m[0][2] = 8;
+    m[0][3] = 4;
+    m[0][4] = 7;
+
+    m[1][0] = 1;
+    m[1][2] = 2;
+    m[1][3] = 6;
+    m[1][4] = 5;
+
+    m[2][0] = 8;
+    m[2][1] = 2;
+    m[2][3] = 9;
+    m[2][4] = 5;
+
+    m[3][0] = 4;
+    m[3][1] = 6;
+    m[3][2] = 9;
+    m[3][4] = 3;
+
+    m[4][0] = 7;
+    m[4][1] = 5;
+    m[4][2] = 5;
+    m[4][3] = 3;
+         
+    for (i = 0; i < n; i++)
+        for (j = 0; j <= i; j++)
+            if (i == j)
+                m[i][j] = 0;
+}
+
 
 void test1 (){
     cola c;
     matriz figura2 = crear_matriz(5);
-    inicializar_matriz(figura2, 5);
+    //inicializar_matriz(figura2, 5);
+    ini_m(figura2,5);
     showMatriz(figura2, 5);
     prim(figura2,5,&c);
+    mostrar_cola(c);
+}
+
+void test2(){
+    cola c;
+    matriz m;
+    m = crear_matriz(5);
+    int v[10];
+    v[0]=1;
+    v[1]=8;
+    v[2]=4;
+    v[3]=7;
+    v[4]=2;
+    v[5]=6;
+    v[6]=5;
+    v[7]=9;
+    v[8]=5;
+    v[9]=3;  
+    inicializar_matriz_test(m,5,v,9);
+    showMatriz(m, 5);
+    prim(m,5,&c);
     mostrar_cola(c);
 
 }
 
 int main(){
-        test1();
-        
+
+    inicializar_semilla();
+    test2();   
 }
