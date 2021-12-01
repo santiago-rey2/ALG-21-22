@@ -190,41 +190,6 @@ void inicializar_matriz_test(matriz m, int n,int *ve,int l){
                 m[i][j] = m[j][i];
 }
 
-void ini_m(matriz m,int n){
-        /* Crea un grafo completo no dirigido con valores aleatorios entre 1 y n */
-    int i, j;
-    m[0][1] = 1;
-    m[0][2] = 8;
-    m[0][3] = 4;
-    m[0][4] = 7;
-
-    m[1][0] = 1;
-    m[1][2] = 2;
-    m[1][3] = 6;
-    m[1][4] = 5;
-
-    m[2][0] = 8;
-    m[2][1] = 2;
-    m[2][3] = 9;
-    m[2][4] = 5;
-
-    m[3][0] = 4;
-    m[3][1] = 6;
-    m[3][2] = 9;
-    m[3][4] = 3;
-
-    m[4][0] = 7;
-    m[4][1] = 5;
-    m[4][2] = 5;
-    m[4][3] = 3;
-         
-    for (i = 0; i < n; i++)
-        for (j = 0; j <= i; j++)
-            if (i == j)
-                m[i][j] = 0;
-}
-
-
 void test1 (){
     cola c;
     matriz figura2 = crear_matriz(5);
