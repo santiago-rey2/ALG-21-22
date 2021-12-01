@@ -127,7 +127,7 @@ las aristas del arbol en la cola ’aristas’ */
     do{
         for ( j = 2; j < nodos; j++)
         {
-            if(0 <= distanciaMinima[j] <min){
+            if((0 <= distanciaMinima[j]) && (distanciaMinima[j]< min)){
                 min = distanciaMinima[j];
                 k = j;
             }
