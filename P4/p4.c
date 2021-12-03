@@ -250,7 +250,7 @@ void TimePrim() {
     cola c;matriz m;
     double ta, tb, t, c1, c2, c3;
 
-    printf("     n           t(n)      t(n)/n^1.9     t(n)/n^2     t(n)/n^2.1\n");
+    printf("     n             t(n)     t(n)/n^1.9 t(n)/n^2 t(n)/n^2.1\n");
     while (n <= 1600) {
         
         c1 = pow(n, 1.9);c2 = pow(n,2);c3 = pow(n, 2.1);
@@ -267,10 +267,11 @@ void TimePrim() {
             }
             tb = microsegundos();
             t = (tb - ta) / k;
-            printf("* %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+            printf("* ");
         } else {
-            printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+            printf("  ");
         }
+        printf("  %5d  %15f  %8f  %8f  %8f\n", n, t, t / c1, t / c2, t / c3);
         while(!cola_vacia(c)){  //Vaciamos la cola para la siguiente iteración
             quitar_primero(&c);
         }      
