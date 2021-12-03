@@ -5,7 +5,7 @@
 #include <math.h>
 #include <sys/time.h>
 
-#define TAM_MAX 32000
+#define TAM_MAX 1600
 #define INFINITO INT_MAX
 
 typedef int **matriz;
