@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include <limits.h>
+#include <math.h>
+#include <sys/time.h>
 
-#define TAM_MAX 1600
+#define TAM_MAX 3200
 #define INFINITO INT_MAX
 
 typedef int **matriz;
@@ -235,9 +237,56 @@ void test2(){
     free(v);    
 }
 
-int main(){
+double microsegundos() { /* obtiene la hora del sistema en microsegundos */
+    struct timeval t;
+    
+    if (gettimeofday(&t, NULL) < 0)
+        return 0.0;
+    return (t.tv_usec + t.tv_sec * 1000000.0);
+}
 
+void TimePrim() {
+    int n = 25, i, k = 100;
+    cola c;matriz m;
+    double ta, tb, t, c1, c2, c3;
+
+    printf("     n           t(n)      t(n)/n^1.9     t(n)/n^2     t(n)/n^2.1\n");
+    while (n <= 1600) {
+        
+        c1 = pow(n, 1.9);c2 = pow(n,2);c3 = pow(n, 2.1);
+        m = crear_matriz(n);
+        inicializar_matriz(m,n);
+        ta = microsegundos();
+        prim(m,n,&c);
+        tb = microsegundos();
+        t = tb - ta;
+        if ((t) < 500) {
+            ta = microsegundos();
+            for (i = 0; i < k; i++) {
+                prim(m,n,&c);
+            }
+            tb = microsegundos();
+            t = (tb - ta) / k;
+            printf("* %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+        } else {
+            printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+        }
+        while(!cola_vacia(c)){  //Vaciamos la cola para la siguiente iteración
+            quitar_primero(&c);
+        }      
+        liberar_matriz(m,n);
+        n = n * 2;
+    }
+}
+
+int main(){
+    int i = 0;
     inicializar_semilla();
-    test2();
-    test1();   
+    //test2();
+    //test1();
+    while(i< 5){
+        TimePrim();
+        i++;
+    }
+       
 }
