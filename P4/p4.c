@@ -30,7 +30,7 @@ void inicializar_semilla() {
 void crear_cola(cola * c){
     c->tamano = 0;
     c->cabeza = 0;
-    c->final = -1; //Antes ponia c->final = TAM_MAX
+    c->final = -1; 
 }
 
 int cola_vacia(cola c){
@@ -38,8 +38,8 @@ int cola_vacia(cola c){
 }
 
 void incrementar(int *x){
-    if(++(*x) == TAM_MAX){ //Elimine el Else porque asi se incrementa, lo comprueba y siendo verdadero o falso ya queda incrementado
-        *x = 0; // Creo que es cero. Cuando llega al final de la cola, vuelve a la PRIMERA posicion
+    if(++(*x) == TAM_MAX){
+        *x = 0; 
     }
 }
 
