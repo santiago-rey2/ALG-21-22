@@ -5,7 +5,7 @@
 #include <math.h>
 #include <sys/time.h>
 
-#define TAM_MAX 3200
+#define TAM_MAX 32000
 #define INFINITO INT_MAX
 
 typedef int **matriz;
@@ -47,7 +47,7 @@ void insertar(tipo_elemento v, cola * c){
     if(c->tamano == TAM_MAX){
         printf("Error: cola llena\n");
     }else{
-        c->tamano += 1;
+        c->tamano ++;
         incrementar(&(c->final));
         c->vector[c->final] = v;
     }
@@ -282,8 +282,8 @@ void TimePrim() {
 int main(){
     int i = 0;
     inicializar_semilla();
-    //test2();
-    //test1();
+    test2();
+    test1();
     while(i< 5){
         TimePrim();
         i++;

@@ -20,13 +20,25 @@ El ordenador con el que hemos realizado las mediciones tiene las siguientes cara
 *   200       153.870000    0.006534      0.003847      0.002265
     400       611.000000    0.006952      0.003819      0.002098
     800      2449.000000    0.007467      0.003827      0.001961
-   1600     12403.000000    0.010132      0.004845      0.002317
-
+-> 1600     12403.000000    0.010132      0.004845      0.002317
 
  *: tiempo promedio de k=100 ejecuciones del algoritmo.
 Cota subestimada = n^1.9
 Cota ajustada = n^2 Constante: 0.0040 
 Cota sobrestimada = n^2.1
+
+Anomalia indicada con ->,hemos querido evitado la anomalia ejecutando varias veces el codigo en 
+diferentes ordenadores y varias veces en cada uno obteniendo en todos el mismo resultado.
+
+Conclusión:
+En este experimento empírico hemos obtenido que la cota empírica para el algoritmo de prim coincide con su 
+complejidad teorica n^2.
+Para la obtención de unas cotas relativamente ajustadas hemos tenido que realizar multitud de ejecuciones
+ya que se obtenían anomalías con frecuencia.
+En el estudio no hemos podido realizar ejecuciones con matrices sumamente grandes ya que los elementos
+de estas crecen de forma cuadrática provocando que con matrices de elementos que pueden parecer a simple
+vista pequeños nos dan una cantidad masiva de elementos.
+
 
 
 
