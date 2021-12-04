@@ -13,7 +13,7 @@ El ordenador con el que hemos realizado las mediciones tiene las siguientes cara
 -Equipo: Ryzen 3600X 6 cores 12 hilos.
 -Memoria RAM: 32 GiB.
 
-La unidad de tiempo utilizada son los microsegundos.
+La unidad de tiempo utilizada son los microsegundos y los vectores siguen una progresion geometrica de razon dos.
 
      n           t(n)      t(n)/n^1.9     t(n)/n^2     t(n)/n^2.1
 *    25         2.100000    0.004636      0.003360      0.002435
@@ -40,8 +40,3 @@ ya que se obtenían anomalías con frecuencia.
 En el estudio no hemos podido llevar a cabo ejecuciones con matrices sumamente grandes ya que los elementos
 de estas crecen de forma cuadrática provocando que con matrices de elementos que pueden parecer a simple
 vista pequeños nos dan una cantidad masiva de elementos.
-
-
-
-
-
