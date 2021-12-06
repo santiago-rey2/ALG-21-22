@@ -19,14 +19,14 @@ La unidad de tiempo utilizada son los microsegundos y los vectores siguen una pr
 *    25         2.100000    0.004636      0.003360      0.002435
 *    50         8.600000    0.005087      0.003440      0.002326
 *   100        34.370000    0.005447      0.003437      0.002169
-*   200       153.870000    0.006534      0.003847      0.002265 (aqui sube en vez de bajarrr :()
+*   200       153.870000    0.006534      0.003847      0.002265 
     400       611.000000    0.006952      0.003819      0.002098
     800      2449.000000    0.007467      0.003827      0.001961
 -> 1600     12403.000000    0.010132      0.004845      0.002317
 
  *: tiempo promedio de k=100 ejecuciones del algoritmo.
 Cota subestimada = n^1.9
-Cota ajustada = n^2 Constante: 0.0040 (*yo diria que un poco menos: 0.0036*)
+Cota ajustada = n^2 Constante: 0.0038
 Cota sobrestimada = n^2.1
 
 Anomalia indicada con ->, cabe destacar que hemos querido evitar la anomalia ejecutando varias veces el codigo en 
