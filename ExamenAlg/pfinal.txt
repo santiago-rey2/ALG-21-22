@@ -6,44 +6,45 @@ Con esta practica pretendemos obtener empiricamente la complejidad del algritmo 
 
 El ordenador con el que hemos realizado las mediciones tiene las siguientes caracteristicas: 
 
--S.O:Windows 10.
--Nombre del equipo: Lenovo Legion Y520 con un i5 de 4 nucleos 4 hilos.
--Memoria RAM: 12Gib.
+-S.O: Fedora linux 35.
+-Nombre del equipo: Lenovo thinkpad x1  procesador i7 1165G7 de 8 nucleos a 2.8Ghz.
+-Memoria RAM: 31.1Gib.
 
-Las tablas sacadas en este informe son ejecutadas en un sistema windows,ya que, aunque tenían pedida aula con equipo de trabajo
-hubo una incidencia con estos y no pude tener acceso a la plataforma de linux para ejecutar de forma sana las pruebas.
+Debido a una incidencia con el equipo de la facultad las ejecuciones han sido realizadas desde un equipo
+de uno de los profesores de la asignatura. 
+
 
 El numero de entradas es igual a 1000. La unidad de tiempo que estamos utilizando son microsegundos y los
 datos evaluados siguen una progresion geometrica de razon dos.  
 
-Tabla de Tiempos sumasubmax3: estudio de la complejidad n del algoritmo.
+Tabla de Tiempos sumasubmax3: estudio de la complejidad n del algoritmo. 
 
-Tiempos sumasubmax3 
+Tiempos SumaSubMax3: 
 
-       n         t(n)       t(n)/n^0.9  t(n)/n^1.05  t(n)/n^1.2
+     n       t(n)              t(n)/n      t(n)/n^1.16     t(n)/n^1.3
+  *   500        15.628000    0.031256      0.011564       0.004844
+->*  1000        27.164000    0.027164      0.008995       0.003420
+  *  2000        70.118000    0.035059      0.010390       0.003585
+  *  4000       175.322000    0.043831      0.011626       0.003640
+  *  8000       409.101000    0.051138      0.012141       0.003450
+    16000       862.000000    0.053875      0.011448       0.002952
+    32000      1787.000000    0.055844      0.010621       0.002486
 
-  *   500        31.243000    0.116327   0.045797     0.018030
-->*  1000        46.891000    0.093560   0.033196     0.011778
-  *  2000       124.943000    0.133593   0.042720     0.013661
-  *  4000       265.589000    0.152179   0.043858     0.012640
-  *  8000       562.340000    0.172670   0.044849     0.011649
-  * 16000      1187.219000    0.195354   0.045730     0.010705
 
 
 *: tiempo promedio de k=1000 ejecuciones del algoritmo.
-Cota subestimada = n^0.9
-Cota ajustada = n            Constante:0.071 
-Cota sobrestimada = n^1.1
+Cota subestimada = n
+Cota ajustada = n^1.16            Constante:0.071 
+Cota sobrestimada = n^1.3
 
-Tenemos una anomalia con 1000 elementos esta indicada con el simbolo ->.Para evitar la anomalia hemos repetido en muchas ocasiones las tablas de tiempo
-aunque al ejecutar en una maquina Windows, es muy complejo evitar las mismas.
+Tenemos una anomalia con 1000 elementos esta indicada con el simbolo ->.Para evitar la anomalia hemos
+ repetido en muchas ocasiones las tablas de tiempos.
 
 
 En las medidas de tiempos menores de 500 micras imprime un asterisco como podemos observar anteriormente. Una vez dentro del bucle 
 que se ejecuta en dichas medidas inicializamos la sumaSumMax k = 1000 para el algoritmo. 
 
-Empiricamente hemos hemos obtenido una cota ajustada del orden de n ^1.05 , que se aproxima a la teorica que es n.
+Empiricamente hemos hemos obtenido una cota ajustada del orden de n ^1.16 , que se aproxima a la teorica que es nlog(n).
 
 Con este trabajo hemos llegado a la conclusión de que conforme aumenta n los tiempos de ejecucción para el algoritmo aumentan
-linealmente,si se dobla n se dobla aproximadamente el tiempo de ejecución;por ello podemos concluir que este algoritmo de calculo
-es mas eficiente que otros ya que su complejidad es lineal.
+con respecto a su cota empirica y teorica alrededor de nlog(n).
