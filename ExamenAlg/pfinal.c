@@ -125,15 +125,15 @@ double microsegundos() { /* obtiene la hora del sistema en microsegundos */
 
 
 void TimeSubMax() {
-    int n = 500, v[64000], i, k = 1000;
+    int n = 500, v[16000], i, k = 1000;
     double ta, tb, t, c1, c2, c3;
 
-    printf("     n           t(n)      t(n)/n^0.9     t(n)/n     t(n)/n^1.1\n");
-    while (n <= 64000) {
+    printf("     n       t(n)      t(n)/n^0.9  t(n)/n^1.05  t(n)/n^1.2\n");
+    while (n <= 16000) {
         aleatorio(v, n);
         c1 = pow(n, 0.9);
-        c2 = pow(n, 1);
-        c3 = pow(n, 1.1);
+        c2 = pow(n, 1.05);
+        c3 = pow(n, 1.2);
         ta = microsegundos();
         sumaSubMax3(v, n);
         tb = microsegundos();
@@ -145,9 +145,9 @@ void TimeSubMax() {
             }
             tb = microsegundos();
             t = (tb - ta) / k;
-            printf("* %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+            printf("* %5d  %15f    %8f   %8f   %8f\n",n,t,t/c1,t/c2,t/c3);
         } else {
-            printf("  %5d  %15f    %8f      %8f      %8f\n", n, t, t / c1, t / c2, t / c3);
+            printf("  %5d  %15f    %8f   %8f   %8f\n",n,t,t/c1,t/c2,t/c3);
         }
         n = n * 2;
     }

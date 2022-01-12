@@ -6,10 +6,12 @@ Con esta practica pretendemos obtener empiricamente la complejidad del algritmo 
 
 El ordenador con el que hemos realizado las mediciones tiene las siguientes caracteristicas: 
 
--S.O: linux. 
--Version: Windows 10.
+-S.O:Windows 10.
 -Nombre del equipo: Lenovo Legion Y520 con un i5 de 4 nucleos 4 hilos.
 -Memoria RAM: 12Gib.
+
+Las tablas sacadas en este informe son ejecutadas en un sistema windows,ya que, aunque tenían pedida aula con equipo de trabajo
+hubo una incidencia con estos y no pude tener acceso a la plataforma de linux para ejecutar de forma sana las pruebas.
 
 El numero de entradas es igual a 1000. La unidad de tiempo que estamos utilizando son microsegundos y los
 datos evaluados siguen una progresion geometrica de razon dos.  
@@ -18,21 +20,30 @@ Tabla de Tiempos sumasubmax3: estudio de la complejidad n del algoritmo.
 
 Tiempos sumasubmax3 
 
-     n            t(n)     t(n)/n^0.9      t(n)/n      t(n)/n^1.1
+       n         t(n)       t(n)/n^0.9  t(n)/n^1.05  t(n)/n^1.2
+
+  *   500        31.243000    0.116327   0.045797     0.018030
+->*  1000        46.891000    0.093560   0.033196     0.011778
+  *  2000       124.943000    0.133593   0.042720     0.013661
+  *  4000       265.589000    0.152179   0.043858     0.012640
+  *  8000       562.340000    0.172670   0.044849     0.011649
+  * 16000      1187.219000    0.195354   0.045730     0.010705
 
 
 *: tiempo promedio de k=1000 ejecuciones del algoritmo.
 Cota subestimada = n^0.9
-Cota ajustada = n. Constante: 
+Cota ajustada = n            Constante:0.071 
 Cota sobrestimada = n^1.1
+
+Tenemos una anomalia con 1000 elementos esta indicada con el simbolo ->.Para evitar la anomalia hemos repetido en muchas ocasiones las tablas de tiempo
+aunque al ejecutar en una maquina Windows, es muy complejo evitar las mismas.
 
 
 En las medidas de tiempos menores de 500 micras imprime un asterisco como podemos observar anteriormente. Una vez dentro del bucle 
 que se ejecuta en dichas medidas inicializamos la sumaSumMax k = 1000 para el algoritmo. 
 
-Con este trabajo hemos llegado a la conclusión de que conforme aumenta n los tiempos de ejecucción para el algoritmo aumentan
-linealmente,si se dobla n se dobla aproximadamente el tiempo de ejecución; por ello podemos concluir que este algoritmo de calculo
-es mas eficiente que otros ya que su complejidad es lineal.
+Empiricamente hemos hemos obtenido una cota ajustada del orden de n ^1.05 , que se aproxima a la teorica que es n.
 
-Las tablas sacadas en este informe son ejecutadas en un sistema windows,ya que, aunque tenían pedida aula con equipo de trabajo
-hubo una incidencia con estos y no pude tener acceso a la plataforma de linux para ejecutar de forma sana las pruebas.
+Con este trabajo hemos llegado a la conclusión de que conforme aumenta n los tiempos de ejecucción para el algoritmo aumentan
+linealmente,si se dobla n se dobla aproximadamente el tiempo de ejecución;por ello podemos concluir que este algoritmo de calculo
+es mas eficiente que otros ya que su complejidad es lineal.
