@@ -1,0 +1,77 @@
+Santiago Rey García,Alexandre Pérez Paredes.
+
+En este experimento empírico estudiaremos y compararemos tres algoritmos que resuelven el cálculo 
+del enésimo término de la sucesión de fibonacci que fueron programados y testado en c.
+
+En el ejercicio nos centraremos en comprobar los tiempos de ejecución todos ellos 
+medidos en microsegundos.
+
+El computador en el que se ejecuto el experimento es un lonovo legion y530 con un procesador 
+i5-7300HQ de 4 núcleos y 4 hilos de ejecución a 2.5Ghz de frecuencia base.
+
+
+En las tablas siguientes las letras a,b y c corresponderán a las cotas subestimada,
+ajustada y sobreestimada respectivamente.
+El número de iteracciones usadas para tiempos inferiores a 500 microsegundos es de 10000 
+que corresponden con los tiempos indicados con un * en la tabla. 
+
+Test algoritmo 1 
+           n               t             t/a             t/b             t/c 
+           2           0.008*       0.006860        0.003170        0.002075 
+           4           0.028*       0.019124        0.004085        0.001750 
+           8           0.163*       0.076134        0.003474        0.000638 
+          16           7.341*       1.597703        0.003326        0.000112 
+          32       16430.000      778.164901        0.003373        0.000004
+          
+En este primer algoritmo la cota subestimada es del orden 1,1^n,la cota ajustada es 
+del orden de ((1+sqrt(5))/2)^n y la cota sobreestimada es del orden 2^n.
+El rango de la constante a la que tiende la cota ajustada es [0.0032,0.0042].
+Este algoritmo hace uso de un proceso recursivo lo que conlleva que sea el mas 
+ineficiente de todos obteniendo en el mismo los tiempo de ejecución mas altos
+con cifras considerablemente mas pequeñas. 
+
+Test algoritmo 2 
+           n               t             t/a             t/b             t/c 
+        1000           3.225*       0.012839        0.003225        0.000467 
+       10000          30.162*       0.019031        0.003016        0.000327 
+      100000         299.697*       0.029970        0.002997        0.000260 
+     1000000        3054.000        0.048403        0.003054        0.000221 
+    10000000       32383.000        0.081342        0.003238        0.000201 
+
+En este algoritmo la cota subestimada es del orden n^0,8 ,la cota ajustada 
+del orden n y la sobreestimada es del orden n*log(n).
+El rango de la constante a la que tiende la cota ajustada es [0.0029,0.0032].
+Este deja de lado la recursividad para en su lugar usar un bucle de 
+repeticion (for) en el que tenemos un tiempo constante fijo de ejecución 
+por lo que obtenemos mejores resultados que en el recursivo permitiendonos hacer el 
+calculo de valores de cifras mucho mas grandes en la misma máquina 
+con tiempos de ejecución aceptables.
+
+
+Test algoritmo 3 
+           n               t             t/a             t/b             t/c 
+        1000           0.047*       0.017844        0.006789        0.001483 
+       10000           0.058*       0.019243        0.006341        0.000584 
+      100000           0.072*       0.021190        0.006245        0.000227 
+     1000000           0.086*       0.023003        0.006189        0.000086 
+    10000000           0.100*       0.024883        0.006198        0.000032 
+
+Por ultimo en este algoritmo la cota subestimadaes del orden sqrt(log(n)),la cota 
+ajustada es del orden log(n), y la sobreestimada del orden n^0,5.
+El rango de la constante a la que tiende la cota ajustada es [0.0061,0.0070].
+En este último algoritmo dejamos a tras los bucles de tipo repetición (for) y nos 
+pasamos a bucles de tipo mientras(While) donde el analisis de
+los parametros de entrada son mas sencillos obteniendo tiempos mucho mejores con 
+respecto al anterior algoritmo.
+
+
+Como conclusión final podemos observar como el método recursivo es tiene mayor complejidad
+obteniendo de este los tiempos de ejecución mas alto en fib1 en fib2 cambiamos del método 
+recursivo a un bucle de repetición que tiene menor complejidad pero obteniendo tiempos constantes
+de ejecución en cada iteración que nos resulta en una mejoría considerable con respecto al primer algoritmo,
+por último en fib3 usamos bucles del tipo while que en este caso usan una condición 
+de complejidad mínima que nos permite obtener los mejores resultados en cuanto a tiempo de ejecución.
+
+
+ 
+

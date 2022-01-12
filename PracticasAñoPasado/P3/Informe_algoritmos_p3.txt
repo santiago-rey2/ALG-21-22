@@ -1,0 +1,79 @@
+Santiago Rey García y Alexandre Pérez Paredes.
+
+En este experimento empírico analizaremos y compararemos los tiempos de 
+ejecución de la insercion de n elementos aleatorios en un arbol binario de 
+busqueda y los tiempos de búsqueda de n elementos aleatorios en un ABB.
+
+El experimento fue ejecutado en computador de sobremesa con un procesador ryzen
+5 3600x de 6 núcleos físicos y 12 hilos de ejecución con frecuencia estable en
+4,2 GHz. El procesador cuenta con 32 MB de memoria cache L3. Además el 
+ordenandor cuenta con 48 GB de RAM a 3200MHz.
+El sistema operativo utilizado es Ubuntu en su version 20.04.1 LTS y está 
+instalado en un disco ssd de 128 GB.
+
+En las tablas de tiempo que tenemos a continuación n se corresponde con la 
+longitud del array que estamos ordenando, t se corresponde con el tiempo total 
+de la ejecución, t/a se corresponde con la relacion del tiempo respecto a la cota 
+subestimada, t/b se corresponde con la relacion del tiempo respecto a la cota
+ajustada y t/c corresponde con la relacion del tiempo respecto a la cota sobreestimada.
+
+Todos los tiempos obtenidos son medidos en microsegundos. 
+En esta práctica no valoramos usar repeticiones en mediciones menores al umbral 
+de 500 microsegundos puesto que para los valores utilizados los tiempos obtenidos 
+son ampliamente superiores.  
+
+Las filas con medidas anómalas las identificamos con '->' al inicio de la fila.
+
+
+Insercion de n elementos aleatorios
+        n             t           t/a           t/b           t/c  
+     8000      1290.000    0.16125000    0.01810417    0.00180283 
+    16000      2988.000    0.18675000    0.01947933    0.00147639 
+->  32000      7155.000    0.22359375    0.02177910    0.00124993 
+->  64000     12356.000    0.19606250    0.01783959    0.00076315 
+   128000     28653.000    0.22385156    0.01926052    0.00062568 
+   256000     62116.000    0.24264062    0.01972877    0.00047956 
+
+Cotas
+Subestimada   - n
+Ajustada      - n ^ 0.999 * log(n)
+Sobreestimada - n ^ 1.5
+La constante a la que tiende la cota ajustada es 0.019.
+
+Para la obtención de esta tabla debimos realizar múltiples repeticiones para 
+obtener una con unos valores suficientemente ajustados y sin excesivas medidas
+anómalas en esta que mostramos solo hay dos sobretodo recalcar la de 32000 elementos
+que se dispersa de la constante 0.002.
+Esta tabla nos fue especialmente difícil de calcular puesto que en practicamente 
+todas las mediciones había una o varias anomalías.
+
+
+Busqueda de n elementos aleatorios
+        n             t           t/a           t/b           t/c 
+     8000       985.000    0.10850000    0.00461794    0.00137658 
+->  16000      2199.000    0.11643750    0.00440064    0.00108654 
+    32000      5465.000    0.14215625    0.00469237    0.00095470 
+    64000     12329.000    0.18587500    0.00456231    0.00076148 
+   128000     28939.000    0.18778125    0.00463342    0.00063193 
+   256000     67100.000    0.22075391    0.00466459    0.00051804 
+
+Cotas
+Subestimada   - n
+Ajustada      - n ^ 1.121
+Sobreestimada - n ^ 1.5 
+La constante a la que tiende la cota ajustada es 0.0046.
+
+Esta tabla fue más sencilla de calcular comparada con la de inserción puesto que 
+no había tantas medidas anómalas. En este caso en particular tenemos una que se
+dispersa 0.0002 de la cota ajustada.
+
+
+Conclusiones
+Las cotas ajustadas son similares a las teóricas pero aún así son complejas de obtener 
+puesto que pequeñas variaciones en ellas alteran en gran medida el resultado.
+En cuanto a la complejidad de comprensión ambos estan bastante parejos y son sencillos 
+de entender. Sin embargo a la hora de obtener las tablas la inserción aparecen con 
+mayor frecuencia anomalías.
+Como conclusión final podemos observar que a igual número de elementos los tiempos de
+inserción y búsqueda son bastante parejos.
+

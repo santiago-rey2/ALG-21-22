@@ -1,0 +1,317 @@
+Santiago Rey García y Alexandre Pérez Paredes.
+
+En este experimento empírico analizaremos y compararemos los tiempos de 
+ejecución del algoritmo de ordenación quicksort dependiendo de la inicialización
+del vector a ordenar (ordenado aleatoriamente, ordenado ascendentemente o 
+ordenado descendentemente) y del umbral utilizado (1, 10 o 100). Cuando llegamos
+al umbral especificado utilizaremos el algoritmo de ordención por inserción.
+
+El experimento fue ejecutado en computador portátil con un procesador Intel 
+Core i7-8750H con frecuencia estable de 2.20GHz. El procesador cuenta con 9MiB de 
+memoria cache L3. Además el ordenandor cuenta con 16GiB de RAM a 2667 MHz. El 
+sistema operativo utilizado es Ubuntu en su version 20.04.1 LTS y está instalado 
+en un disco hdd de 1 TB.
+ 
+En las tablas de tiempo que tenemos a continuación n se corresponde con la 
+longitud del array que estamos ordenando, t se corresponde con el tiempo total 
+de la ejecución, t/a se corresponde con la relacion del tiempo respecto a la cota 
+subestimada, t/b se corresponde con la relacion del tiempo respecto a la cota
+ajustada y t/c corresponde con la relacion del tiempo respecto a la cota sobreestimada.
+
+Todos los tiempos estan medidos en microsegundos.
+
+El número de iteracciones usadas para tiempos inferiores a 500 microsegundos es de 1000
+y se corresponden con los tiempos indicados con un '*' en la tabla. 
+
+Las filas con medidas anómalas las identificamos con '->' al inicio de la fila.
+
+
+Umbral 1
+
+Hay una columna con la cota ajustada teórica puesto que es conocida (n*log(n)), para el 
+resto de umbrales no lo es y por tanto no la habrá. 
+
+Test quicksort con inicializacion aleatoria
+           n               t             t/a             t/b             t/c 
+*        250        15.06900      0.03293657      0.01091668      0.00361828 
+*        500        34.15700      0.03809693      0.01099249      0.00317177 
+*       1000        73.79100      0.04252717      0.01068234      0.00268328 
+*       2000       156.56100      0.04709713      0.01029884      0.00225207 
+*       4000       336.45000      0.05327285      0.01014131      0.00193055 
+        8000       783.00000      0.06571515      0.01089049      0.00180480 
+       16000      1678.00000      0.07509399      0.01083381      0.00156299 
+       32000      3477.00000      0.08339879      0.01047441      0.00131553 
+       64000      7645.00000      0.09872287      0.01079398      0.00118017 
+      128000     16172.00000      0.11287463      0.01074371      0.00102262 
+      256000     34331.00000      0.12996393      0.01076899      0.00089233 
+      512000     69783.00000      0.14372668      0.01036772      0.00074788 
+     1024000    144455.00000      0.16232327      0.01019344      0.00064012 
+     2048000    305816.00000      0.18795750      0.01027528      0.00056173
+
+
+Cotas
+Subestimada   - n ^ 0.8 * log(n)
+Ajustada      - n ^ 0.999 * log(n)
+Sobreestimada - n ^ 1.2 * log(n)
+La constante a la que tiende la cota ajustada es 0.010
+
+La cota ajustada es prácticamente la teórica pero la subestimamos muy ligeramente 
+para que nos ajustaran mejor los valores de la constante.
+No ponemos una columna con la teórica puesto que es prácticamente la misma.
+
+Test quicksort con inicializacion ascendente
+           n               t             t/a             t/b             t/c         teorica
+*       2000        94.55500      0.02844431      0.00734513      0.00136014      0.00649127
+*       4000       197.33100      0.03124501      0.00713122      0.00113229      0.00607695
+*       8000       417.28400      0.03502156      0.00706476      0.00096183      0.00588758
+       16000       895.00000      0.04005311      0.00714130      0.00083366      0.00577846
+       32000      1870.00000      0.04485354      0.00706833      0.00070752      0.00581711
+       64000      4021.00000      0.05192475      0.00723225      0.00062073      0.00580997 
+      128000      8516.00000      0.05943856      0.00731723      0.00053850      0.00582294
+->    256000     18459.00000      0.06987866      0.00760329      0.00047979      0.00555209
+      512000     35391.00000      0.07289212      0.00700998      0.00037929      0.00533162
+     1024000     74147.00000      0.08331857      0.00708202      0.00032857      0.00537055
+     2048000    155447.00000      0.09553925      0.00717755      0.00028553      0.00515528
+ 
+Cotas
+Subestimada   - n ^ 0.8 * log(n)
+Ajustada      - n ^ 0.978125 * log(n)
+Sobreestimada - n ^ 1.2 * log(n)
+La constante a la que tiende la cota ajustada es 0.007     
+
+Indicamos la medida de n=256000 como anómala puesto que se dispersa 0.0003 de la 
+siguiente más alta y de la gran mayoría de valores obtenidos en las distintas ejecuciones 
+los cuales estaban en el intervalo 0.0069 - 0.0073.  
+El exponente de la cota ajustada tiene tantos decimales debido a que en los tres valores 
+más grandes a poco que se variara el valor del exponente se observaba una ligera subestimación. 
+     
+
+Test quicksort con inicializacion descendente
+           n               t             t/a             t/b             t/c         teorica
+*       4000       200.53900      0.03175296      0.00724415      0.00115069      0.00611221
+*       8000       422.82500      0.03548660      0.00715536      0.00097460      0.00588646
+       16000       895.00000      0.04005311      0.00713785      0.00083366      0.00573972
+       32000      1894.00000      0.04542920      0.00715533      0.00071660      0.00575686
+       64000      4009.00000      0.05176978      0.00720668      0.00061888      0.00538217
+      128000      8382.00000      0.05850329      0.00719786      0.00053002      0.00572595
+      256000     17074.00000      0.06463558      0.00702843      0.00044379      0.00546778
+      512000     35780.00000      0.07369332      0.00708238      0.00038346      0.00553100
+     1024000     74833.00000      0.08408942      0.00714260      0.00033161      0.00543561
+     2048000    152120.00000      0.09349444      0.00701883      0.00027942      0.00528850  
+     
+Cotas
+Subestimada   - n ^ 0.8 * log(n)
+Ajustada      - n ^ 0.978175 * log(n)
+Sobreestimada - n ^ 1.2 * log(n)
+La constante a la que tiende la cota ajustada es 0.007
+
+Empiricamente se puede observar como aún ajustandose a 0.007 la gran mayoría de los 
+valores estan en el intervalo 0.0069 - 0.0073 por tanto valores como 0.0078 se considerarían 
+una anomalía.
+La explicación de que el exponente tenga tantos decimales es igual a la de inicialización 
+ascendente con este mismo umbral. 
+ 
+---------------------------------------------------------------------------------------
+
+Umbral 10
+
+Test quicksort con inicializacion aleatoria
+           n               t             t/a             t/b             t/c
+        8000       707.00000      0.05933667      0.01125256      0.00162962 
+       16000      1485.00000      0.06645684      0.01108607      0.00138322 
+       32000      3174.00000      0.07613108      0.01117144      0.00120089 
+       64000      6641.00000      0.08575783      0.01106956      0.00102518 
+      128000     14461.00000      0.10093248      0.01146033      0.00091442 
+      256000     29808.00000      0.11284160      0.01127054      0.00077477 
+      512000     62714.00000      0.12916721      0.01134847      0.00067212 
+     1024000    130613.00000      0.14676909      0.01134303      0.00057878 
+     2048000    270016.00000      0.16595447      0.01128218      0.00049597   
+
+Cotas
+Subestimada   - n ^ 0.8 * log(n)
+Ajustada      - n ^ 0.985 * log(n)
+Sobreestimada - n ^ 1.2 * log(n)
+La constante a la que tiende la cota ajustada es 0.011
+
+Fue bastante sencilla de obtener, subestimamos ligeramente la cota teórica para umbral 1 
+porque como vimos en teoría lo mas beneficioso es entre un umbral 12 y 15. Tras algunos
+intentos ajustando la cota con otros exponentes obtuvimos este con el que practicamente 
+no hay medidas anómalas y si las hay suelen ser 0.012, 0.013 o 0.0109 lo cual es una ligera
+dispersión de la constante a la que tiende la cota ajustada.
+
+Test quicksort con inicializacion ascendente
+           n               t             t/a             t/b             t/c 
+*        250         6.07500      0.01327823      0.00467659      0.00145869 
+*        500        12.99500      0.01449394      0.00447797      0.00120670 
+*       1000        28.56800      0.01646429      0.00446214      0.00103883 
+*       2000        62.28200      0.01873585      0.00445429      0.00089590 
+*       4000       134.50000      0.02129647      0.00444138      0.00077176 
+*       8000       292.49900      0.02454868      0.00449101      0.00067421 
+       16000       629.00000      0.02814906      0.00451737      0.00058589 
+       32000      1276.00000      0.03060594      0.00430856      0.00048278 
+       64000      2777.00000      0.03586049      0.00442841      0.00042869 
+      128000      6375.00000      0.04449516      0.00482003      0.00040311 
+      256000     13037.00000      0.04935306      0.00468983      0.00033886 
+      512000     27851.00000      0.05736256      0.00478164      0.00029848 
+     1024000     56551.00000      0.06354604      0.00464667      0.00025059 
+     2048000    118126.00000      0.07260139      0.00465697      0.00021698   
+     
+Cotas
+Subestimada   - n ^ 0.8 * log(n)
+Ajustada      - n ^ 0.989 * log(n)
+Sobreestimada - n ^ 1.2 * log(n)
+La constante a la que tiende la cota ajustada es 0.004
+
+
+Test quicksort con inicializacion descendente
+           n               t             t/a             t/b             t/c 
+*        250         6.48900      0.01418312      0.00529492      0.00155810 
+*        500        14.49400      0.01616585      0.00533295      0.00134589 
+*       1000        31.37400      0.01808144      0.00527088      0.00114086 
+*       2000        67.36800      0.02026583      0.00522030      0.00096906 
+*       4000       143.37400      0.02270156      0.00516735      0.00082268 
+*       8000       309.10300      0.02594221      0.00521796      0.00071248 
+       16000       699.00000      0.03128170      0.00555988      0.00065109 
+       32000      1413.00000      0.03389200      0.00532296      0.00053461 
+       64000      2993.00000      0.03864978      0.00536394      0.00046204 
+      128000      6454.00000      0.04504656      0.00552433      0.00040811 
+      256000     12933.00000      0.04895935      0.00530561      0.00033616 
+      512000     29039.00000      0.05980940      0.00572730      0.00031122 
+     1024000     59286.00000      0.06661934      0.00563719      0.00026271 
+     2048000    122680.00000      0.07540033      0.00563789      0.00022534
+
+Cotas
+Subestimada   - n ^ 0.8 * log(n)
+Ajustada      - n ^ 0.97845 * log(n)
+Sobreestimada - n ^ 1.2 * log(n)
+La constante a la que tiende la cota ajustada es 0.005
+
+El exponente de la cota ajustada tiene tantos decimales debido a que en los valores 
+de tamaño superior a 64000 aparecían más anomalías a poco que se variara el valor 
+del exponente por ejemplo para 0.978 obteníamos habitualmente 2 o más anomalías.     
+
+---------------------------------------------------------------------------------------
+
+Umbral 100
+
+Test quicksort con inicializacion aleatoria
+           n               t             t/a             t/b             t/c 
+*        250        14.85800      0.03247539      0.01137485      0.00356762 
+*        500        33.61100      0.03748795      0.01151032      0.00312107 
+*       1000        72.70200      0.04189956      0.01127741      0.00264368 
+*       2000       156.00300      0.04692927      0.01107256      0.00224405 
+*       4000       336.81500      0.05333064      0.01103025      0.00193265 
+        8000       788.00000      0.06613479      0.01199065      0.00181633 
+       16000      1663.00000      0.07442271      0.01182831      0.00154902 
+       32000      3493.00000      0.08378257      0.01167280      0.00132158 
+       64000      7316.00000      0.09447437      0.01153825      0.00112938 
+      128000     15389.00000      0.10740958      0.01149935      0.00097310 
+      256000     32830.00000      0.12428172      0.01166384      0.00085332 
+      512000     67546.00000      0.13911930      0.01144527      0.00072390 
+     1024000    139531.00000      0.15679020      0.01130738      0.00061830 
+     2048000    294891.00000      0.18124289      0.01145799      0.00054166
+     
+Cotas
+Subestimada   - n ^ 0.8 * log(n)
+Ajustada      - n ^ 0.99 * log(n)
+Sobreestimada - n ^ 1.2 * log(n)
+La constante a la que tiende la cota ajustada es 0.011
+
+Fue sencilla de calcular y apenas presentaba anomalías a excepción de las mediciones 
+para n=8000 y n=16000 donde aparacía algunas más pero no demasiadas.
+
+Test quicksort con inicializacion ascendente
+           n               t             t/a             t/b             t/c 
+* ->     250         2.18500      0.00477579      0.00120105      0.00052465 
+* ->     500         5.77700      0.00644336      0.00136261      0.00053644 
+*       1000        14.82400      0.00854336      0.00151925      0.00053905 
+*       2000        35.07800      0.01055226      0.00157793      0.00050458 
+*       4000        79.75000      0.01262746      0.00158782      0.00045761 
+*       8000       180.84400      0.01517777      0.00160485      0.00041684 
+*      16000       406.00600      0.01816961      0.00161553      0.00037818 
+       32000       934.00000      0.02240278      0.00167500      0.00035338 
+       64000      1934.00000      0.02497450      0.00157019      0.00029856 
+      128000      4312.00000      0.03009618      0.00159114      0.00027266 
+      256000     10713.00000      0.04055529      0.00180297      0.00027845 
+      512000     20166.00000      0.04153436      0.00155271      0.00021612 
+     1024000     43076.00000      0.04840426      0.00152163      0.00019088 
+     2048000     93564.00000      0.05750535      0.00152011      0.00017186     
+     
+Cotas
+Subestimada   - n ^ 0.8 * log(n)
+Ajustada      - n ^ 1.05 * log(n)
+Sobreestimada - n ^ 1.2 * log(n)
+La constante a la que tiende la cota ajustada es 0.001
+
+Aunque para la mayoría de valores se obtiene 0.0015 indicamos 0.001 como constante a la que tiende la 
+cota ajustada puesto que no podemos concretar la segunda cifra significativa ya que en las múltiples 
+mediciones realizadas se demostró que exceptuando anomalías la gran mayoría de valores obtenidos 
+están en el intervalo 0.0014 - 0.0017.
+ 
+En cuanto a los valores marcados como anomalías podríamos pensar que lo son pero que siempre se produzcan 
+hace pensar que no es así. De esta forma podemos apreciar como para estas dos primeras medidas al estar 
+cerca del umbral la cota ajustada debería ser menor. Esto se debe a que al estar cerca del umbral y por 
+tanto de utilizar la ordenación por inserción la complejidad tenderá más a la de la inserción 
+(n, porque esta proximo a su mejor caso) que a la de quicksort (n*log(n)). A pesar de esto decidimos 
+mantenerlas en la tabla ya que no produce una gran alteración respecto a la constante a la que tiende 
+la cota ajustada y consideramos importante hacer esta distinción.
+
+ 
+
+
+Test quicksort con inicializacion descendente
+           n               t             t/a             t/b             t/c 
+* ->     250         4.50700      0.00985103      0.00284410      0.00108220 
+* ->     500         8.90100      0.00992771      0.00245234      0.00082653 
+*       1000        18.73600      0.01079792      0.00228213      0.00068130 
+*       2000        41.27700      0.01241707      0.00224537      0.00059375 
+*       4000        90.63000      0.01435018      0.00222021      0.00052004 
+*       8000       199.01400      0.01670273      0.00221102      0.00045872 
+*      16000       445.04800      0.01991682      0.00225576      0.00041455 
+       32000       973.00000      0.02333823      0.00226157      0.00036814 
+       64000      2106.00000      0.02719560      0.00225480      0.00032511 
+      128000      4354.00000      0.03038932      0.00215575      0.00027532 
+      256000      9778.00000      0.03701574      0.00224663      0.00025415 
+      512000     21457.00000      0.04419333      0.00229494      0.00022996 
+     1024000     45575.00000      0.05121237      0.00227540      0.00020196 
+     2048000     96015.00000      0.05901176      0.00224331      0.00017636 
+
+Cotas
+Subestimada   - n ^ 0.8 * log(n)
+Ajustada      - n ^ 1.025 * log(n)
+Sobreestimada - n ^ 1.2 * log(n)
+La constante a la que tiende la cota ajustada es 0.002
+
+Al igual que en la ascendente aunque en esta tabla practicamente todos los valores se de la constante 
+sean 0.0022 es más correcto indicar 0.002 ya que en el global de las mediciones puede apreciarse que 
+los valores están generalmente en el intervalo 0.0021 - 0.0023.
+
+En cuanto a los valores marcados como anomalías sucede lo mismo que en la inicialización ascendente
+pero en este caso la complejidad de la inserción es n² porque esta más próximo a su peor caso y por tanto 
+la cota ajustada debería ser mayor.
+
+
+Conclusiones
+
+Tanto para umbral 1 como para umbral 10 podemos observar como con las inicialización ascendente y descendente
+obtenemos tiempos bastante parejos mientras que para la inicialización aleatoria obtenemos tiempos 
+aproximadamente el doble de grandes para un mismo tamaño. Sin embargo para umbral 100 obtenemos un tiempo 
+ligeramente superior en la descendente respecto a la ascendente y de aproximadamente el triple para la aleatoria 
+respecto a la ascendente.
+
+Para la inicialización aleatoria se comprueba que el umbral 10 es el más rápido con cierta diferencia de los
+otros dos que estan bastante parejos aunque ligeramente por encima el umbral 100.
+Para la inicialización ascendentemente ordenada podemos comprobar como el umbral 100 es el más rápido seguido 
+del umbral 10 y a continuación del umbral 1 siendo este casi la mitad de rápido que el primero. En un principio
+puede chochar con lo estudiado en teoría de que es beneficioso hasta un umbral 15, pero hay que darse cuenta 
+de que la complejidad del mejor caso de la ordenación por inserción es con un vector ya ordenado y por tanto
+cuanto mayor sea el umbral más cerca estará de la complejidad O(n) de la ordenación por inserción que de la
+O(n*log(n)) de quicksort.
+De igual forma para la inicialización descendentemente ordenada puesto que cuando 
+quicksort llama a la ordenación por inserción los intervalos están prácticamente ordenados y esta solo tiene 
+que terminar de ordenar.  
+
+En cuanto a la complejidad de comprensión del algoritmo creemos que es relativamente complejo al ser una mezcla 
+de dos algoritmos de ordenación distintos por tanto creemos que el umbral 1 el cual es el quicksort puro es más 
+sencillo de entender aunque en todos los casos fijándose en los detalles se acaba entendiendo el funcionamiento
+del algoritmo.

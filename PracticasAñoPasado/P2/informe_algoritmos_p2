@@ -1,0 +1,122 @@
+Santiago Rey Garcia y Alexandre Perez Paredes.
+
+Experimento ejecutado en computador de sobremessa con un procesador ryzen 5 3600x de
+6 núcleos físicos y 16 hilos de ejecución con freciencia estable en 4,2 Ghz.Este procesador cuenta con
+32 MB de memoria cache L3.
+El ordenandor cuenta también con 16 GB de RAM a 3200MHz Y el sitema operativo utilizado es Ubuntu
+en su version 20.04.1LTS y está instalado en un disco ssd de 128 GB.
+ 
+El ejercicio que hemos realizado se basa en el análisis de los tiempos de ejecución de los algoritmos
+de ordenación vectoriales: Ordenación por inserción y Ordenación por Shell.
+
+En las tablas de tiempo que tenemos acontinuación n se corresponde con la longitud del array que estamos ordenando,
+t se corresponde con el tiempo total de la ejecución, t/a se corresponde con los tiempos obtenidos con la cota subestimada,
+t/b se corresponde con los tiempos obtenidos de la cota ajustada y t/c corresponde con los obtenidos de la cota superestimada.
+Todos los timepos obtenidos son medidos en microsegundos.
+Todas las filas marcadas por  * indica que los tiempos indicados fueron obtenidos al usar un número k
+de repeticiones que se indican en cada tabla tras las cotas.
+
+//---------------------------------------------------------------------------
+Cotas
+Ajustada      - n ^ 1.195
+Sobreestimada - n ^ 1.5
+Subestimada   - n
+Número de repeticiones k - 10000
+
+Test Ordenacion Shell Aleatorio 
+           n               t             t/a             t/b             t/c 
+         500*          41.685        0.083369        0.024815     0.003728393 
+        1000*          96.395        0.096395        0.025064     0.003048284 
+        2000*         219.743        0.109872        0.024957     0.002456805 
+        4000          502.263        0.125566        0.024915     0.001985369 
+        8000         1160.000        0.145000        0.025134     0.001621149 
+       16000         2626.000        0.164125        0.024853     0.001297522 
+       32000         5860.000        0.183125        0.024224     0.001023700
+       
+En esta primera tabla donde analizamos la ordenación de un vector inicializado
+de forma aleatoria        
+//---------------------------------------------------------------------------
+Cotas
+Ajustada      - n * (log(n)/log(2)) (forma equivalente al log en base 2 de n)
+Sobreestimada - n ^ 1.2
+Subestimada   - n
+Número de repeticiones k - 10000
+
+Test Ordenacion Shell Ascendente
+           n               t             t/a             t/b             t/c 
+         500*          13.040        0.026080        0.002909     0.007525007 
+        1000*          28.985        0.028985        0.002908     0.007280753 
+        2000*          64.364        0.032182        0.002935     0.007037316 
+        4000*         141.483        0.035371        0.002956     0.006733391 
+        8000*         306.288        0.038286        0.002953     0.006344853 
+       16000          654.000        0.040875        0.002927     0.005897036 
+       32000         1426.000        0.044562        0.002978     0.005596797
+//--------------------------------------------------------------------------
+Cotas
+Ajustada      - n * log(n)
+Sobreestimada - n ^ 1.2
+Subestimada   - n ^ 0.8
+Número de repeticiones k - 10000
+
+Test Ordenacion Shell Descente 
+           n               t             t/a             t/b             t/c 
+         500*          17.912        0.124156        0.005764     0.010336656 
+        1000*          39.684        0.157983        0.005745     0.009968045 
+        2000*          87.510        0.200095        0.005757     0.009568066 
+        4000*         191.049        0.250898        0.005759     0.009092299 
+        8000*         421.487        0.317916        0.005862     0.008731246 
+       16000          894.000        0.387295        0.005772     0.008061086 
+       32000         1919.000        0.477480        0.005781     0.007531734 
+//--------------------------------------------------------------------------      
+Cotas
+Ajustada      - n ^ 2
+Sobreestimada - n ^ 2.2 
+Subestimada   - n ^ 1.8 
+Número de repeticiones k - 1000
+     
+Ordenacion por insercion con inicializacion aleatorio
+           n               t             t/a             t/b             t/c 
+         500*       111.67500        0.001548       0.0004467       0.0001289 
+        1000*       436.56200        0.001738       0.0004366       0.0001097 
+        2000       1743.00000        0.001993       0.0004357       0.0000953 
+        4000       6896.00000        0.002264       0.0004310       0.0000820 
+        8000      27659.00000        0.002608       0.0004322       0.0000716 
+       16000     110643.00000        0.002996       0.0004322       0.0000624 
+       32000     441471.00000        0.003433       0.0004311       0.0000541
+//--------------------------------------------------------------------------       
+Cotas
+Ajustada      - n
+Sobreestimada - n ^ 1.2
+Subestimada   - n ^ 0.8  
+Número de repeticiones k - 1000
+
+Muchisimas repeticiones para obtener una tabla ajustada de este valor       
+Ordenacion por insercion con inicializacion ascendente
+           n               t             t/a             t/b             t/c 
+         500*         1.71000        0.011853       0.0034200        0.000987 
+        1000*         3.44500        0.013715       0.0034450        0.000865 
+        2000*         6.90700        0.015793       0.0034535        0.000755 
+        4000*        14.72800        0.019342       0.0036820        0.000701 
+        8000*        27.77200        0.020948       0.0034715        0.000575 
+       16000*        56.78200        0.024599       0.0035489        0.000512 
+       32000*       111.74800        0.027805       0.0034921        0.000439
+//--------------------------------------------------------------------------       
+Cotas
+Ajustada      - n ^ 2
+Sobreestimada - n ^ 2.2
+Subestimada   - n ^ 1.8
+Número de repeticiones k - 1000
+      
+Ordenacion por insercion con inicializacion descendiente
+           n               t             t/a             t/b             t/c 
+         500*       229.95300        0.003188       0.0009198       0.0002654 
+        1000        909.00000        0.003619       0.0009090       0.0002283 
+        2000       3619.00000        0.004137       0.0009047       0.0001978 
+        4000      14451.00000        0.004744       0.0009032       0.0001719 
+        8000      58313.00000        0.005498       0.0009111       0.0001510 
+       16000     231529.00000        0.006269       0.0009044       0.0001305 
+       32000     922938.00000        0.007176       0.0009013       0.0001132 
+//--------------------------------------------------------------------------
+Conclusión finaL       
+       
+                
